@@ -1,6 +1,7 @@
 package com.example.teacherspet
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +17,24 @@ class LandingPage : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val signInButton: Button = findViewById(R.id.signInButton)
+        val logInButton: Button = findViewById(R.id.logInButton)
+
+        signInButton.setOnClickListener {
+            toSignIn()
+        }
+
+        logInButton.setOnClickListener {
+            toLogIn()
+        }
+    }
+
+    private fun toSignIn(){
+//        startActivity(Intent(this, SignInActivity::class.java))
+    }
+
+    private fun toLogIn(){
+//        startActivity(Intent(this, LogInActivity::class.java))
     }
 }
