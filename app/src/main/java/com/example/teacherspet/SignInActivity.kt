@@ -1,10 +1,13 @@
 package com.example.teacherspet
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 
 class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,4 +20,8 @@ class SignInActivity : AppCompatActivity() {
             insets
         }
     }
+}
+
+fun onReturnButtonClick() {
+//    startActivity(Intent(this, LandingPageActivity::class.java))
 }
