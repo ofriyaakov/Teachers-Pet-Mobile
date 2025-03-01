@@ -20,7 +20,7 @@ class FirebaseModel {
     }
 
     fun add(user: User, callback: EmptyCallback) {
-        database.collection(Constants.Collections.USERS).document(user.id).set(user)
+        database.collection(Constants.Collections.USERS).document(user.id).set(user.json)
             .addOnCompleteListener {
                 callback()
             }
