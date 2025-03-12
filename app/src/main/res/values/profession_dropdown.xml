@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="profession_dropdown_array">
+        <item>Mathematics</item>
+        <item>History</item>
+        <item>Literature</item>
+        <item>Physics</item>
+        <item>Biology</item>
+        <item>Chemistry</item>
+        <item>Electronics</item>
+    </string-array>
+</resources>
