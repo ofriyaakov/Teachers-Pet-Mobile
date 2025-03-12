@@ -1,7 +1,9 @@
 package com.example.teacherspet
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,6 +26,28 @@ class SignInActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             onSaveClicked()
+        }
+
+        val gradeDropdown: Spinner = findViewById(R.id.gradeDropdown)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.grade_dropdown_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            gradeDropdown.adapter = adapter
+        }
+
+        val professionDropdown: Spinner = findViewById(R.id.professionDropdown)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.profession_dropdown_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            professionDropdown.adapter = adapter
         }
     }
 
