@@ -66,13 +66,14 @@
         android:id="@+id/emailInput"
         android:layout_width="320dp"
         android:layout_height="47dp"
+        android:layout_marginTop="200dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="504dp"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -110,14 +111,14 @@
         android:layout_width="320dp"
         android:layout_height="53dp"
         android:backgroundTint="#020202"
+        android:onClick="onSaveClicked"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordInput"
-        app:layout_constraintVertical_bias="0.9"
-        android:onClick="onSaveClicked"
+        app:layout_constraintVertical_bias="0.466"
         tools:ignore="OnClick" />
 
     <ImageButton
