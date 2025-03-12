@@ -1,5 +1,6 @@
 package com.example.teacherspet
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -31,7 +32,7 @@ class LandingPage : AppCompatActivity() {
     }
 
     private fun toSignIn(){
-//        startActivity(Intent(this, SignInActivity::class.java))
+        startActivity(Intent(this, SignInActivity::class.java))
     }
 
     private fun toLogIn(){
