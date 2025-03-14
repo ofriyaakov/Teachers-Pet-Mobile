@@ -3,6 +3,7 @@ package com.example.teacherspet
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,6 +26,12 @@ class SignInActivity : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             onSaveClicked()
+        }
+
+        val returnButton: ImageButton = findViewById(R.id.returnButton)
+
+        returnButton.setOnClickListener{
+            finish()
         }
     }
 
@@ -50,8 +57,4 @@ class SignInActivity : AppCompatActivity() {
         }
 
     }
-}
-
-fun onReturnButtonClick() {
-//    startActivity(Intent(this, LandingPageActivity::class.java))
 }
