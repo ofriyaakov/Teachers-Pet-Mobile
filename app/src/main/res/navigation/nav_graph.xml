@@ -18,5 +18,9 @@
         android:id="@+id/signInFragment"
         android:name="com.example.teacherspet.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+    </fragment>
 </navigation>
