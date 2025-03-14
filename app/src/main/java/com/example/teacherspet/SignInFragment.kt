@@ -38,7 +38,7 @@ class SignInFragment : Fragment() {
             id = binding?.idInput?.text?.toString() ?: "",
             name = binding?.nameInput?.text?.toString() ?: "",
             profession = binding?.professionInput?.text?.toString() ?: "",
-            grade = binding?.gardeInput?.text?.toString() ?: "",
+            grade = binding?.gradeInput?.text?.toString() ?: "",
             email = binding?.emailInput?.text?.toString() ?: "",
             password = binding?.passwordInput?.text?.toString() ?: ""
         )
