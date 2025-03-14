@@ -2,6 +2,7 @@ package com.example.teacherspet
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,13 +29,20 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun onSaveClicked() {
+        val idInput: EditText = findViewById(R.id.idInput)
+        val nameInput: EditText = findViewById(R.id.nameInput)
+        val professionInput: EditText = findViewById(R.id.professionInput)
+        val gradeInput: EditText = findViewById(R.id.gradeInput)
+        val emailInput: EditText = findViewById(R.id.emailInput)
+        val passwordInput: EditText = findViewById(R.id.passwordInput)
+
         val user = User(
-            id = findViewById(R.id.idInput) ?: "",
-            name = findViewById(R.id.nameInput) ?: "",
-            profession = findViewById(R.id.professionDropdown) ?: "",
-            grade = findViewById(R.id.gradeDropdown) ?: "",
-            email = findViewById(R.id.emailInput) ?: "",
-            password = findViewById(R.id.passwordInput) ?: ""
+            id = idInput.text?.toString() ?: "",
+            name = nameInput.text?.toString() ?: "",
+            profession = professionInput.text?.toString() ?: "",
+            grade = gradeInput.text?.toString() ?: "",
+            email = emailInput.text?.toString() ?: "",
+            password = passwordInput.text?.toString() ?: ""
         )
 
         Model.shared.add(user) {
