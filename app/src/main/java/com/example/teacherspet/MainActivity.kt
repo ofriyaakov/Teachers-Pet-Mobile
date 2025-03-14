@@ -31,7 +31,5 @@ class MainActivity : AppCompatActivity() {
         val mainNavHost: NavHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host) as NavHostFragment
         navController = mainNavHost.navController
 
-//        navController?.navigate(R.id.LandingPageFragment)
-
     }
 }
