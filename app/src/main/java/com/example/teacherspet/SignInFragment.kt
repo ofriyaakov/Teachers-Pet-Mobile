@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.databinding.FragmentSignInBinding
@@ -17,6 +19,7 @@ class SignInFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -28,7 +31,23 @@ class SignInFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
-    fun onReturnButtonClick() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val returnButton: ImageView = view.findViewById(R.id.returnButton)
+        val saveButton: Button = view.findViewById(R.id.nextButton)
+
+        returnButton.setOnClickListener {
+            onReturnButtonClick()
+        }
+
+        saveButton.setOnClickListener {
+            onSaveClicked()
+        }
+
+    }
+
+    private fun onReturnButtonClick() {
         findNavController().navigate(R.id.action_signInFragment_to_landingPageFragment)
     }
 
