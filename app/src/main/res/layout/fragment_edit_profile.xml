@@ -36,87 +36,68 @@
         app:srcCompat="@drawable/avatar" />
 
     <EditText
-        android:id="@+id/nameInput"
+        android:id="@+id/emailInput"
         android:layout_width="320dp"
         android:layout_height="47dp"
         android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="text"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
         android:useBoundsForWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage" />
 
-    <Spinner
-        android:id="@+id/gradeDropdown"
+    <EditText
+        android:id="@+id/gradeInput"
         android:layout_width="155dp"
         android:layout_height="47dp"
         android:layout_marginStart="44dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailInput"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="11dp"
+        android:hint="Grade"
+        app:layout_constraintBottom_toTopOf="@+id/locationInput"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/emailInput"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/emailInput"
+        android:id="@+id/locationInput"
         android:layout_width="320dp"
         android:layout_height="47dp"
         android:layout_marginTop="200dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage"
+        android:hint="Location"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
-        android:autoText="true"
-        android:contentDescription="create password"
-        android:elegantTextHeight="false"
-        android:ems="10"
-        android:hint="create password"
-        android:inputType="textPassword"
-        android:textIsSelectable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
-
-    <Spinner
-        android:id="@+id/professionDropdown"
+        android:id="@+id/professionInput"
         android:layout_width="155dp"
         android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailInput"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/locationInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toEndOf="@+id/gradeDropdown"
-        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+        android:hint="Profession"
+        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="320dp"
         android:layout_height="53dp"
         android:backgroundTint="#020202"
-        android:onClick="onSaveClicked"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordInput"
-        app:layout_constraintVertical_bias="0.466"
         tools:ignore="OnClick" />
 
     <ImageButton
@@ -135,15 +116,16 @@
         tools:ignore="OnClick" />
 
     <EditText
-        android:id="@+id/idInput"
+        android:id="@+id/nameInput"
         android:layout_width="320dp"
         android:layout_height="47dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Id"
+        android:text="Name"
         android:textColor="#A8A7A9"
-        app:layout_constraintBottom_toTopOf="@+id/nameInput"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoImage" />
 

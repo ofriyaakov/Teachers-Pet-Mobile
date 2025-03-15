@@ -30,7 +30,7 @@ class SignInActivity : AppCompatActivity() {
     private fun onSaveClicked() {
         val user = User(
             id = findViewById(R.id.idInput) ?: "",
-            name = findViewById(R.id.nameInput) ?: "",
+            name = findViewById(R.id.nameInput1) ?: "",
             profession = findViewById(R.id.professionDropdown) ?: "",
             grade = findViewById(R.id.gradeDropdown) ?: "",
             email = findViewById(R.id.emailInput) ?: "",
