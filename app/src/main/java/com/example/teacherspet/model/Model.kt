@@ -1,6 +1,12 @@
 package com.example.teacherspet.model
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
+import java.util.concurrent.Executors
+import com.example.teacherspet.model.dao.AppLocalDb
+import com.example.teacherspet.model.dao.AppLocalDbRepository
 
 class Model private constructor() {
 
@@ -9,15 +15,50 @@ class Model private constructor() {
         CLOUDINARY
     }
 
+    enum class LoadingState {
+        LOADING,
+        LOADED
+    }
+
     private val firebaseModel = FirebaseModel()
+//    private val database: AppLocalDbRepository = AppLocalDb.database
+//    val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
+//    private var executor = Executors.newSingleThreadExecutor()
+//    val users: LiveData<List<User>> = database.userDao().getAllUsers()
+
+
 
     companion object {
         val shared = Model()
     }
 
     fun add(user: User, callback: EmptyCallback) {
+        Log.d("onSavedClicked-03", user.toString())
         firebaseModel.add(user) {
             firebaseModel.add(user, callback)
         }
     }
+
+//    fun printAllUsers() {
+//        loadingState.postValue(LoadingState.LOADING)
+//        val lastUpdated: Long = User.lastUpdated
+//        firebaseModel.getAllUsers() { users ->
+////            Log.d("USERS-01", users.toString())
+//            executor.execute {
+//                var currentTime = lastUpdated
+//                for (user in users) {
+////                    database.userDao().insertAll(users)
+////                    user.lastUpdated?.let {
+////                        if (currentTime < it) {
+////                            currentTime = it
+////                        }
+////                    }
+//                    Log.d("USERS-02", user.toString())
+//                }
+//
+//                User.lastUpdated = currentTime
+//                loadingState.postValue(LoadingState.LOADED)
+//            }
+//        }
+//    }
 }
