@@ -1,12 +1,11 @@
 package com.example.teacherspet
-
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.model.Model
@@ -14,7 +13,6 @@ import com.example.teacherspet.databinding.FragmentSignInBinding
 import com.example.teacherspet.model.User
 
 class SignInFragment : Fragment() {
-
     private var binding: FragmentSignInBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +25,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignInBinding.inflate(layoutInflater, container, false)
-
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,6 +45,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun onReturnButtonClick() {
+//        Model.shared.printAllUsers()
         findNavController().navigate(R.id.action_signInFragment_to_landingPageFragment)
     }
 
@@ -62,12 +60,14 @@ class SignInFragment : Fragment() {
             password = binding?.passwordInput?.text?.toString() ?: ""
         )
 
+        Log.d("onSavedClicked - 01", user.toString())
+
         Model.shared.add(user) {
+            Log.d("onSavedClicked - 02", "in model")
             Model.Storage.CLOUDINARY
         }
-
+//        Model.shared.printAllUsers()
     }
-
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
