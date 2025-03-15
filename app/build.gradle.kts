@@ -16,12 +16,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "CLOUD_NAME", "\"${project.properties["CLOUD_NAME"] ?: ""}\"")
-        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
-        buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
-        buildConfigField("String", "TMDB_BASE_URL", "\"${project.properties["TMDB_BASE_URL"] ?: ""}\"")
-        buildConfigField("String", "TMDB_POSTER_BASE_URL", "\"${project.properties["TMDB_POSTER_BASE_URL"] ?: ""}\"")
-        buildConfigField("String", "TMDB_ACCESS_TOKEN", "\"${project.properties["TMDB_ACCESS_TOKEN"] ?: ""}\"")
+//        buildConfigField("String", "CLOUD_NAME", "\"${project.properties["CLOUD_NAME"] ?: ""}\"")
+//        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
+//        buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
+//        buildConfigField("String", "TMDB_BASE_URL", "\"${project.properties["TMDB_BASE_URL"] ?: ""}\"")
+//        buildConfigField("String", "TMDB_POSTER_BASE_URL", "\"${project.properties["TMDB_POSTER_BASE_URL"] ?: ""}\"")
+//        buildConfigField("String", "TMDB_ACCESS_TOKEN", "\"${project.properties["TMDB_ACCESS_TOKEN"] ?: ""}\"")
     }
 
     buildTypes {
@@ -66,9 +66,17 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.cloudinary.android)
-    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
+//    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
 //    implementation("com.google.firebase:firebase-analytics")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth:22.1.0")
+    implementation("com.google.android.gms:play-services-auth:20.6.0")
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
+    implementation("com.google.firebase:firebase-storage:20.2.1")
+
 }
