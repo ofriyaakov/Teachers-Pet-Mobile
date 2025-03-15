@@ -1,8 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+
+
+
 android {
     namespace = "com.example.teacherspet"
     compileSdk = 35
@@ -22,6 +28,22 @@ android {
 //        buildConfigField("String", "TMDB_BASE_URL", "\"${project.properties["TMDB_BASE_URL"] ?: ""}\"")
 //        buildConfigField("String", "TMDB_POSTER_BASE_URL", "\"${project.properties["TMDB_POSTER_BASE_URL"] ?: ""}\"")
 //        buildConfigField("String", "TMDB_ACCESS_TOKEN", "\"${project.properties["TMDB_ACCESS_TOKEN"] ?: ""}\"")
+
+        //load the values from .properties file
+        val keystoreFile = project.rootProject.file("keystore.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        //return empty key in case something goes wrong
+        val apiKey = properties.getProperty("GEMINI_API_KEY") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "GEMINI_API_KEY",
+            value = apiKey
+        )
+
+
     }
 
     buildTypes {
@@ -66,6 +88,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.cloudinary.android)
+    implementation(libs.generativeai)
 //    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
 //    implementation("com.google.firebase:firebase-analytics")
     testImplementation(libs.junit)
@@ -79,4 +102,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-storage:20.2.1")
 
+}
+
+secrets {
+    propertiesFileName = "secrets.properties"
+    defaultPropertiesFileName = "local.defaults.properties"
 }
