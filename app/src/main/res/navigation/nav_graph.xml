@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_landingPageFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -23,4 +26,9 @@
             android:id="@+id/action_signInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aiHelperFragment"
+        android:name="com.example.teacherspet.AiHelperFragment"
+        android:label="fragment_ai_helper"
+        tools:layout="@layout/fragment_ai_helper" />
 </navigation>

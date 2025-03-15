@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.google.ai.client.generativeai.GenerativeModel
@@ -42,34 +44,31 @@ class AiHelperFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sendButton: Button = view.findViewById(R.id.sendButton)
-        val prompt: TextInputEditText = view.findViewById(R.id.editTextTextMultiLine)
+        val sendButton: ImageButton = view.findViewById(R.id.sendButton)
         sendButton.setOnClickListener(){
-            val answer = sendToAI(prompt.toString())
-            val answerTextView: TextView = view.findViewById(R.id.textView)
-            answerTextView.text = answer
+            sendToAI(view)
         }
 
     }
 
-    fun sendToAI(prompt: String): String {
+    fun sendToAI(view: View) {
+        val prompt: EditText = view.findViewById(R.id.editTextTextMultiLine)
+        val answerView: TextView = view.findViewById(R.id.textView)
+
+
         val apiKey = BuildConfig.GEMINI_API_KEY
         val generativeModel =
             GenerativeModel(
                 modelName = "gemini-1.5-flash",
                 apiKey = apiKey)
 
-        var answer = ""
-
         lifecycleScope.launch {
             val response = withContext(Dispatchers.IO) {
-                generativeModel.generateContent(prompt)
+                generativeModel.generateContent(prompt.text.toString())
             }
-
-            answer = response.text.toString()
+            response.text?.let { Log.d("KFIRIN", it) }
+            answerView.text = response.text.toString()
         }
-
-        return answer
 
     }
 

@@ -29,7 +29,6 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="28dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/signInText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"

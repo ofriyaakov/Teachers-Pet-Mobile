@@ -51,7 +51,7 @@ class LandingPageFragment : Fragment() {
     }
 
     private fun toLogIn(){
-//        startActivity(Intent(this, LogInActivity::class.java))
+        findNavController().navigate(R.id.action_landingPageFragment_to_aiHelperFragment)
     }
 
 
