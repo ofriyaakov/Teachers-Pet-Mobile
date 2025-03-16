@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_landingPageFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_landingPageFragment_to_aiHelperFragment"
-            app:destination="@id/aiHelperFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
