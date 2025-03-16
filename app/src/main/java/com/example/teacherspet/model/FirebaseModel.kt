@@ -20,17 +20,23 @@ class FirebaseModel {
         database.firestoreSettings = settings
     }
 
-    fun add(user: User, callback: EmptyCallback) {
-        Log.d("onSavedClicked - 04", user.json.toString())
+    fun addUser(user: User, callback: EmptyCallback) {
         database.collection(Constants.Collections.USERS).document(user.id).set(user.json)
             .addOnCompleteListener {
-                Log.d("onSavedClicked - addOnCompleteListener", user.json.toString())
                 callback()
             }
             .addOnFailureListener {
                 Log.d("TAG", it.toString() + it.message)
-                Log.d("onSavedClicked - 06", it.toString() + it.message)
             }
-        Log.d("onSavedClicked - 05", "${ database.collection(Constants.Collections.USERS).get() }")
+    }
+
+    fun addPost(post: Post, callback: EmptyCallback) {
+        database.collection(Constants.Collections.POSTS).document(post.id).set(post.json)
+            .addOnCompleteListener {
+                callback()
+            }
+            .addOnFailureListener {
+                Log.d("TAG", it.toString() + it.message)
+            }
     }
 }
