@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_landingPageFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -22,5 +25,11 @@
         <action
             android:id="@+id/action_signInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadPostFragment"
+        android:name="com.example.teacherspet.UploadPostFragment"
+        android:label="fragment_upload_post"
+        tools:layout="@layout/fragment_upload_post" >
     </fragment>
 </navigation>

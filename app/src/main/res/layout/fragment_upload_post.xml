@@ -20,13 +20,13 @@
             android:textSize="34sp" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/postImage"
+            android:layout_width="380dp"
+            android:layout_height="250dp"
             android:src="@drawable/ic_launcher_foreground" />
 
         <Button
-            android:id="@+id/uploadImage"
+            android:id="@+id/uploadImageButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="upload image" />
@@ -37,7 +37,7 @@
             android:layout_height="111dp"
             android:ems="10"
             android:inputType="text"
-            android:text="post description" />
+            android:hint="post description"/>
 
         <Button
             android:id="@+id/postButton"
