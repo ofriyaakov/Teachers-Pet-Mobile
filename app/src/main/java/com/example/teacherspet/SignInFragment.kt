@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.databinding.FragmentSignInBinding
 import com.example.teacherspet.model.User
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class SignInFragment : Fragment() {
     private var binding: FragmentSignInBinding? = null
+    val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,17 @@ class SignInFragment : Fragment() {
             Model.Storage.CLOUDINARY
         }
 //        Model.shared.printAllUsers()
+        Log.d("AUTH", "Starting")
+        auth.createUserWithEmailAndPassword(user.email, user.password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("SignIn", "SignIn was successful")
+                }
+                else {
+                    Log.d("SignIn", task.exception.toString())
+                }
+            }
+
     }
     companion object {
         @JvmStatic
