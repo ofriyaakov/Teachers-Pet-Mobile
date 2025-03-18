@@ -23,9 +23,4 @@
             android:id="@+id/action_signInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.example.teacherspet.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
 </navigation>
