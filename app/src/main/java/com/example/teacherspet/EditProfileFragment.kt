@@ -17,7 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class EditProfileFragment : Fragment() {
     private var binding: FragmentEditProfileBinding? = null
-    val auth = FirebaseAuth.getInstance()
+    private var auth = FirebaseAuth.getInstance()
+    private val userDetails: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,16 @@ class EditProfileFragment : Fragment() {
         val returnButton: ImageButton = view.findViewById(R.id.returnButton)
         val saveButton: Button = view.findViewById(R.id.nextButton)
 
+        var userDetailsDef = auth.currentUser?.uid?.let { Model.shared.getUser(it) }
+        userDetailsDef?.addOnSuccessListener {
+            userDetails?.password = userDetailsDef.result.data?.get("password").toString()
+
+            binding?.nameInput?.setText(userDetailsDef.result.data?.get("name").toString())
+            binding?.professionInput?.setText(userDetailsDef.result.data?.get("profession").toString())
+            binding?.gradeInput?.setText(userDetailsDef.result.data?.get("grade").toString())
+//          binding?.locationInput?.setText(userDetailsDef.result.data?.get("id").toString())
+        }
+
         returnButton.setOnClickListener {
             onReturnButtonClick()
         }
@@ -48,23 +59,24 @@ class EditProfileFragment : Fragment() {
             saveChanges()
         }
 
+
     }
 
     private fun onReturnButtonClick(){
         //TODO: return to profile page
     }
 
-    private fun saveChanges(){
+    private fun saveChanges() {
 
-        val userDetails = auth.currentUser?.email?.let { Model.shared.getUserByEmail(it) }
-        val userEdit = userDetails?.let {
+
+        val userEdit = auth.currentUser?.let {
             User(
-                id = it.id,
+                id = it.uid,
                 name = binding?.nameInput?.text?.toString() ?: "",
                 profession = binding?.professionInput?.text?.toString() ?: "",
                 grade = binding?.gradeInput?.text?.toString() ?: "",
-                email = binding?.emailInput?.text?.toString() ?: "",
-                password = it.password
+                email = it.email ?: "",
+                password = userDetails?.password ?: ""
             )
         }
 

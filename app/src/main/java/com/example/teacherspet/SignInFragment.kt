@@ -57,7 +57,7 @@ class SignInFragment : Fragment() {
     private fun onSaveClicked() {
 
         val user = User(
-            id = binding?.idInput?.text?.toString() ?: "",
+            id = "",
             name = binding?.nameInput?.text?.toString() ?: "",
             profession = binding?.professionInput?.text?.toString() ?: "",
             grade = binding?.gradeInput?.text?.toString() ?: "",
@@ -65,18 +65,19 @@ class SignInFragment : Fragment() {
             password = binding?.passwordInput?.text?.toString() ?: ""
         )
 
-        Log.d("onSavedClicked - 01", user.toString())
 
-        Model.shared.add(user) {
-            Log.d("onSavedClicked - 02", "in model")
-            Model.Storage.CLOUDINARY
-        }
-//        Model.shared.printAllUsers()
+
         Log.d("AUTH", "Starting")
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("SignIn", "SignIn was successful")
+                    user.id = task.result.user?.uid.toString()
+
+                    Model.shared.add(user) {
+                        Model.Storage.CLOUDINARY
+                    }
+
                 }
                 else {
                     Log.d("SignIn", task.exception.toString())

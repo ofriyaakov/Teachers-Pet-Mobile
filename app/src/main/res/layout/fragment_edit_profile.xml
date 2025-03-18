@@ -36,57 +36,38 @@
         app:srcCompat="@drawable/avatar" />
 
     <EditText
-        android:id="@+id/emailInput"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:useBoundsForWidth="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage" />
-
-    <EditText
         android:id="@+id/gradeInput"
         android:layout_width="155dp"
         android:layout_height="47dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="8dp"
         android:hint="Grade"
         app:layout_constraintBottom_toTopOf="@+id/locationInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/locationInput"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="200dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage"
-        android:hint="Location"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/professionInput"
         android:layout_width="155dp"
         android:layout_height="47dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="11dp"
-        app:layout_constraintBottom_toTopOf="@+id/locationInput"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="8dp"
         android:hint="Profession"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput" />
+        app:layout_constraintBottom_toTopOf="@+id/locationInput"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/locationInput"
+        android:layout_width="320dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImage"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/nextButton"
