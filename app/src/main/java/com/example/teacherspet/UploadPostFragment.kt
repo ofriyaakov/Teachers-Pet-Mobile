@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import androidx.navigation.Navigation
 import com.example.teacherspet.databinding.FragmentUploadPostBinding
 import com.example.teacherspet.model.Model
@@ -62,6 +63,7 @@ class UploadPostFragment : Fragment() {
 
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
@@ -74,32 +76,23 @@ class UploadPostFragment : Fragment() {
             selectedImageUri = data?.data
             postImage.setImageURI(selectedImageUri)
             postImage.visibility = View.VISIBLE
-//            val inputStream = resolver.openInputStream(selectedImageUri!!)
         }
 
-//        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//            data?.data?.let { uri ->
-//                val inputStream = contentResolver.openInputStream(uri)
-//            }
-//        }
     }
 
     private fun onPostClicked() {
         val post = Post(
-            id = '1'.toString(),
-            userId = "ofri",
+            id = '2'.toString(),
+            userId = "KfirTheKing",
             imageUri = selectedImageUri?.toString() ?: "DIDNT WORK",
             description = postDescription?.text?.toString() ?: ""
         )
-
-//        binding?.progressBar?.visibility = View.VISIBLE
 
         binding?.postImage?.isDrawingCacheEnabled = true
         binding?.postImage?.buildDrawingCache()
         val bitmap = (binding?.postImage?.drawable as BitmapDrawable).bitmap
 
         Model.shared.addPost(post, bitmap, Model.Storage.CLOUDINARY) {
-//            binding?.progressBar?.visibility = View.GONE
             view?.let { Navigation.findNavController(it).popBackStack() }
         }
     }

@@ -44,39 +44,19 @@ class FirebaseModel {
 
         val storageRef: StorageReference = storage.reference
 
-//        path = Android.OS.Environment.GetExternalStoragePublicDirectory(
-//            Android.OS.Environment.DirectoryPictures
-//        ).AbsolutePath
-//
-//        val myPath: string = Path.Combine(path, "file.name")
+        val file = Uri.fromFile(File(post.imageUri))
 
-//        Log.d("file - uri", uri.toString())
-
-        val file = Uri.fromFile(File("storage/emulated/0/Pictures/Screenshots/Screenshot_20250316-213742.png")) // Replace with your file path and name
-//        val inputStream = contentResolver.openInputStream(uri)
-        val riversRef = storageRef.child("gs://teacher-s-pet-6c42a.firebasestorage.app/images") // Specify the storage path
+        val riversRef = storageRef.child("gs://teacher-s-pet-6c42a.firebasestorage.app/images")
 
         val uploadTask = riversRef.putFile(file)
 
-// Create a reference to "file"
         val mountainsRef = storageRef.child("file.jpg")
-//        var post = post
 
         if (file !== null) {
 
-//            imageRef.putFile(uri)
-//                .addOnSuccessListener { taskSnapshot ->
-//                    imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
-//                        post = Post(id = post.id, userId=post.userId, imageUri = downloadUrl.toString(), description=post.description)}}
-//
-            Log.d("file file", file.toString())
             uploadTask.addOnFailureListener {
-                // Handle unsuccessful uploads
             }.addOnSuccessListener { taskSnapshot ->
-                // taskSnapshot.metadata contains file metadata such as size, content type, etc.
-                // Get a URL to the uploaded content
                 taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { uri ->
-                    //Do something with the uri
                 }
             }
 
