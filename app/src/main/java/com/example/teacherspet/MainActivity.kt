@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
     private fun logout(){
         FirebaseAuth.getInstance().signOut()
         Log.d("LOGOUT", "Logged out")
+
+        navController?.navigate(R.id.action_aiHelperFragment2_to_landingPageFragment)
+        hideBottomNavBar()
     }
 
     fun showBottomNavBar(){
