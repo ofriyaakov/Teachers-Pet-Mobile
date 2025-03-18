@@ -1,7 +1,5 @@
 package com.example.teacherspet.model
 
-import android.graphics.Bitmap
-import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,85 +21,44 @@ class Model private constructor() {
     }
 
     private val firebaseModel = FirebaseModel()
-    private val cloudinaryModel = CloudinaryModel()
+//    private val database: AppLocalDbRepository = AppLocalDb.database
+//    val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
+//    private var executor = Executors.newSingleThreadExecutor()
+//    val users: LiveData<List<User>> = database.userDao().getAllUsers()
+
+
+
     companion object {
-//        val shared = Model()
-        val shared = try {
-            Model()
-        } catch (e: Exception) {
-        Log.d("error - debug", e.message.toString())
-        Model()
+        val shared = Model()
+    }
+
+    fun add(user: User, callback: EmptyCallback) {
+        Log.d("onSavedClicked-03", user.toString())
+        firebaseModel.add(user) {
+            firebaseModel.add(user, callback)
         }
     }
 
-    fun addUser(user: User, callback: EmptyCallback) {
-        firebaseModel.addUser(user) {
-            firebaseModel.addUser(user, callback)
-        }
-    }
-
-//    fun addPost(post: Post, uri: Uri?, callback: EmptyCallback) {
-//        firebaseModel.addPost(post, uri) {
-//            firebaseModel.addPost(post, uri, callback)
+//    fun printAllUsers() {
+//        loadingState.postValue(LoadingState.LOADING)
+//        val lastUpdated: Long = User.lastUpdated
+//        firebaseModel.getAllUsers() { users ->
+////            Log.d("USERS-01", users.toString())
+//            executor.execute {
+//                var currentTime = lastUpdated
+//                for (user in users) {
+////                    database.userDao().insertAll(users)
+////                    user.lastUpdated?.let {
+////                        if (currentTime < it) {
+////                            currentTime = it
+////                        }
+////                    }
+//                    Log.d("USERS-02", user.toString())
+//                }
+//
+//                User.lastUpdated = currentTime
+//                loadingState.postValue(LoadingState.LOADED)
+//            }
 //        }
 //    }
-
-    fun addPost(post: Post, image: Bitmap?, storage: Storage, callback: EmptyCallback) {
-        firebaseModel.addPost(post) {
-            image?.let {
-                uploadTo(
-                    storage,
-                    image = image,
-                    name = post.id,
-                    callback = { uri ->
-                        if (!uri.isNullOrBlank()) {
-                            val st = post.copy(imageUri = uri)
-                            firebaseModel.addPost(st, callback)
-                        } else {
-                            callback()
-                        }
-                    },
-                )
-            } ?: callback()
-        }
-    }
-
-    private fun uploadTo(storage: Storage, image: Bitmap, name: String, callback: (String?) -> Unit) {
-        when (storage) {
-            Storage.FIREBASE -> {
-                uploadImageToFirebase(image, name, callback)
-            }
-            Storage.CLOUDINARY -> {
-                uploadImageToCloudinary(
-                    bitmap = image,
-                    name = name,
-                    onSuccess = callback,
-                    onError = { callback(null) }
-                )
-            }
-        }
-    }
-
-    private fun uploadImageToFirebase(
-        image: Bitmap,
-        name: String,
-        callback: (String?) -> Unit
-    ) {
-        firebaseModel.uploadImage(image, name, callback)
-    }
-
-    private fun uploadImageToCloudinary(
-        bitmap: Bitmap,
-        name: String,
-        onSuccess: (String?) -> Unit,
-        onError: (String?) -> Unit
-    ) {
-        cloudinaryModel.uploadImage(
-            bitmap = bitmap,
-            name = name,
-            onSuccess = onSuccess,
-            onError = onError
-        )
-    }
-
 }

@@ -45,6 +45,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun onReturnButtonClick() {
+//        Model.shared.printAllUsers()
         findNavController().navigate(R.id.action_signInFragment_to_landingPageFragment)
     }
 
@@ -59,9 +60,13 @@ class SignInFragment : Fragment() {
             password = binding?.passwordInput?.text?.toString() ?: ""
         )
 
-        Model.shared.addUser(user) {
+        Log.d("onSavedClicked - 01", user.toString())
+
+        Model.shared.add(user) {
+            Log.d("onSavedClicked - 02", "in model")
             Model.Storage.CLOUDINARY
         }
+//        Model.shared.printAllUsers()
     }
     companion object {
         @JvmStatic
