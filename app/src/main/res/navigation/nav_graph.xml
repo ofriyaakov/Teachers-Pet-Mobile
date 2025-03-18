@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_landingPageFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -24,8 +27,12 @@
             app:destination="@id/landingPageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/aiHelperFragment"
-        android:name="com.example.teacherspet.AiHelperFragment"
-        android:label="fragment_ai_helper"
-        tools:layout="@layout/fragment_ai_helper" />
+        android:id="@+id/logInFragment"
+        android:name="com.example.teacherspet.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+    </fragment>
 </navigation>
