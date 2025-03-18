@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
 import java.util.concurrent.Executors
 import com.example.teacherspet.model.dao.AppLocalDb
+import com.example.teacherspet.model.dao.AppLocalDb.database
 import com.example.teacherspet.model.dao.AppLocalDbRepository
+import com.example.teacherspet.model.dao.UserDao
 
 class Model private constructor() {
 
@@ -37,6 +39,10 @@ class Model private constructor() {
         firebaseModel.add(user) {
             firebaseModel.add(user, callback)
         }
+    }
+
+    fun getUserByEmail(email: String): User {
+        return database.userDao().getUserByEmail(email)
     }
 
 //    fun printAllUsers() {
