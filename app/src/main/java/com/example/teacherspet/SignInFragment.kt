@@ -83,6 +83,17 @@ class SignInFragment : Fragment() {
                 }
             }
 
+        auth.signInWithEmailAndPassword(user.email, user.password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("LogInAfterSignIn", "LogIn was successful")
+                }
+                else {
+                    Log.d("LogInAfterSignIn", task.exception.toString())
+                }
+            }
+
+
     }
     companion object {
         @JvmStatic
