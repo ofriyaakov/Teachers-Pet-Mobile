@@ -17,7 +17,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.098" />
@@ -40,20 +40,27 @@
         android:layout_width="155dp"
         android:layout_height="47dp"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="8dp"
         android:hint="Grade"
         app:layout_constraintBottom_toTopOf="@+id/locationInput"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/professionInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
     <EditText
         android:id="@+id/professionInput"
         android:layout_width="155dp"
         android:layout_height="47dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="8dp"
         android:hint="Profession"
         app:layout_constraintBottom_toTopOf="@+id/locationInput"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gradeInput"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
     <EditText
         android:id="@+id/locationInput"
@@ -73,11 +80,12 @@
         android:id="@+id/nextButton"
         android:layout_width="320dp"
         android:layout_height="53dp"
+        android:layout_marginBottom="172dp"
         android:backgroundTint="#020202"
         android:text="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.593"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="OnClick" />
 
@@ -89,7 +97,7 @@
         android:onClick="onReturnButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/signInText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.47"
