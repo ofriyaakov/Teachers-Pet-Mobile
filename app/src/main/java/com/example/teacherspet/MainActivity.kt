@@ -39,13 +39,7 @@ class MainActivity : AppCompatActivity() {
         navController = mainNavHost.navController
 
         bottomNavBar = findViewById(R.id.bottom_navigation)
-        bottomNavBar?.visibility = View.GONE
-
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser?.uid !== null){
-            bottomNavBar?.visibility = View.VISIBLE
-        }
-
+        hideBottomNavBar()
 
 
         bottomNavBar?.setOnItemSelectedListener { item ->
@@ -61,5 +55,16 @@ class MainActivity : AppCompatActivity() {
     private fun logout(){
         FirebaseAuth.getInstance().signOut()
         Log.d("LOGOUT", "Logged out")
+    }
+
+    fun showBottomNavBar(){
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser?.uid !== null){
+            bottomNavBar?.visibility = View.VISIBLE
+        }
+    }
+
+    fun hideBottomNavBar(){
+        bottomNavBar?.visibility = View.GONE
     }
 }
