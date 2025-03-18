@@ -2,6 +2,7 @@ package com.example.teacherspet
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,27 +13,32 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.net.Uri
 import android.provider.MediaStore
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
+import com.example.teacherspet.databinding.FragmentUploadPostBinding
+import com.example.teacherspet.model.Model
+import com.example.teacherspet.model.Post
 
 class UploadPostFragment : Fragment() {
-
+    private var binding: FragmentUploadPostBinding? = null
     private lateinit var postImage: ImageView
     private lateinit var postDescription: EditText
     private lateinit var uploadImageButton: Button
     private lateinit var postButton: Button
     private lateinit var cancelButton: Button
     private var selectedImageUri: Uri? = null
+//    val resolver = requireContext().contentResolver
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_upload_post, container, false)
+        binding = FragmentUploadPostBinding.inflate(layoutInflater, container, false)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,12 +55,15 @@ class UploadPostFragment : Fragment() {
         }
 
         postButton.setOnClickListener {
-//            uploadPost()
+            onPostClicked()
         }
+
     }
 
     private fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
     }
 
@@ -65,8 +74,42 @@ class UploadPostFragment : Fragment() {
             selectedImageUri = data?.data
             postImage.setImageURI(selectedImageUri)
             postImage.visibility = View.VISIBLE
+//            val inputStream = resolver.openInputStream(selectedImageUri!!)
+        }
+
+//        if (requestCode == PICK_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//            data?.data?.let { uri ->
+//                val inputStream = contentResolver.openInputStream(uri)
+//            }
+//        }
+    }
+
+    private fun onPostClicked() {
+        val post = Post(
+            id = '1'.toString(),
+            userId = "ofri",
+            imageUri = selectedImageUri?.toString() ?: "DIDNT WORK",
+            description = postDescription?.text?.toString() ?: ""
+        )
+
+//        binding?.progressBar?.visibility = View.VISIBLE
+
+        binding?.postImage?.isDrawingCacheEnabled = true
+        binding?.postImage?.buildDrawingCache()
+        val bitmap = (binding?.postImage?.drawable as BitmapDrawable).bitmap
+
+        Model.shared.addPost(post, bitmap, Model.Storage.CLOUDINARY) {
+//            binding?.progressBar?.visibility = View.GONE
+            view?.let { Navigation.findNavController(it).popBackStack() }
         }
     }
+
+    private fun clearForm() {
+        postDescription?.text?.clear()
+        postImage?.setImageResource(R.drawable.ic_launcher_foreground)
+        postImage?.visibility = View.GONE
+    }
+
 
     companion object {
         private const val REQUEST_CODE_PICK_IMAGE = 1001
