@@ -30,6 +30,9 @@ android {
 
         //return empty key in case something goes wrong
         val apiKey = properties.getProperty("GEMINI_API_KEY") ?: ""
+        buildConfigField("String", "CLOUD_NAME", "\"${project.properties["CLOUD_NAME"] ?: ""}\"")
+        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
+        buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
 
         buildConfigField(
             type = "String",
