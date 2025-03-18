@@ -21,14 +21,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-//        buildConfigField("String", "CLOUD_NAME", "\"${project.properties["CLOUD_NAME"] ?: ""}\"")
-//        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
-//        buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
-//        buildConfigField("String", "TMDB_BASE_URL", "\"${project.properties["TMDB_BASE_URL"] ?: ""}\"")
-//        buildConfigField("String", "TMDB_POSTER_BASE_URL", "\"${project.properties["TMDB_POSTER_BASE_URL"] ?: ""}\"")
-//        buildConfigField("String", "TMDB_ACCESS_TOKEN", "\"${project.properties["TMDB_ACCESS_TOKEN"] ?: ""}\"")
-
+        
         //load the values from .properties file
         val keystoreFile = project.rootProject.file("keystore.properties")
         val properties = Properties()
