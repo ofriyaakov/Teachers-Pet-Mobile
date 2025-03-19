@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_logInFragment_to_aiHelperFragment2"
             app:destination="@id/aiHelperFragment2" />
+        <action
+            android:id="@+id/action_logInFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/aiHelperFragment2"
@@ -48,9 +51,6 @@
         <action
             android:id="@+id/action_aiHelperFragment2_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
-        <action
-            android:id="@+id/action_logInFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
