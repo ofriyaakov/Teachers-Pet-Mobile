@@ -58,7 +58,9 @@ class LogInFragment : Fragment() {
             binding?.passwordInput?.text.toString()).addOnCompleteListener{ task ->
             if (task.isSuccessful) {
                 Log.d("LogIn", "LogIn was successful")
-                findNavController().navigate(R.id.action_logInFragment_to_editProfileFragment)
+                val mainActivity = activity as MainActivity
+                mainActivity.showBottomNavBar()
+                findNavController().navigate(R.id.action_logInFragment_to_aiHelperFragment)
             }
             else {
                 Log.d("LogIn", task.exception.toString())

@@ -51,9 +51,8 @@ class LandingPageFragment : Fragment() {
     }
 
     private fun toLogIn(){
-        findNavController().navigate(R.id.action_landingPageFragment_to_uploadPostFragment)
+        findNavController().navigate(R.id.action_landingPageFragment_to_logInFragment)
     }
-
 
 
     companion object {
