@@ -62,22 +62,24 @@
         android:id="@+id/editProfileFragment"
         android:name="com.example.teacherspet.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile">
         <action
             android:id="@+id/action_editProfileFragment_to_aiHelperFragment"
             app:destination="@id/aiHelperFragment" />
         <action
             android:id="@+id/action_editProfileFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/uploadPostFragment"
         android:name="com.example.teacherspet.UploadPostFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
         <action
             android:id="@+id/action_uploadPostFragment_to_aiHelperFragment"
             app:destination="@id/aiHelperFragment" />
         <action
             android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+    </fragment>
 </navigation>
