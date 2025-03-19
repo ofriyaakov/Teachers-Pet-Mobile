@@ -30,6 +30,9 @@ android {
 
         //return empty key in case something goes wrong
         val apiKey = properties.getProperty("GEMINI_API_KEY") ?: ""
+        buildConfigField("String", "CLOUD_NAME", "\"${project.properties["CLOUD_NAME"] ?: ""}\"")
+        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"] ?: ""}\"")
+        buildConfigField("String", "API_SECRET", "\"${project.properties["API_SECRET"] ?: ""}\"")
 
         buildConfigField(
             type = "String",
@@ -83,8 +86,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.cloudinary.android)
     implementation(libs.generativeai)
-//    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
-//    implementation("com.google.firebase:firebase-analytics")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -95,6 +97,13 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.6.0")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("com.google.firebase:firebase-storage:20.2.1")
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("com.cloudinary:cloudinary-android:3.0.2")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment:2.7.7")
+    implementation("androidx.navigation:navigation-ui:2.7.7")
 
 }
 
