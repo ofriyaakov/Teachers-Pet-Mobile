@@ -37,29 +37,47 @@
             android:id="@+id/action_logInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
         <action
-            android:id="@+id/action_logInFragment_to_aiHelperFragment2"
-            app:destination="@id/aiHelperFragment2" />
+            android:id="@+id/action_logInFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
         <action
             android:id="@+id/action_logInFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/aiHelperFragment2"
+        android:id="@+id/aiHelperFragment"
         android:name="com.example.teacherspet.AiHelperFragment"
         android:label="fragment_ai_helper"
         tools:layout="@layout/fragment_ai_helper" >
         <action
-            android:id="@+id/action_aiHelperFragment2_to_landingPageFragment"
+            android:id="@+id/action_aiHelperFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.teacherspet.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
     <fragment
         android:id="@+id/uploadPostFragment"
         android:name="com.example.teacherspet.UploadPostFragment"
-        android:label="fragment_upload_post"
-        tools:layout="@layout/fragment_upload_post" />
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
 </navigation>

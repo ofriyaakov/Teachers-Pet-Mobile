@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.transition.Visibility
 import com.example.teacherspet.model.FirebaseModel
@@ -45,8 +46,16 @@ class MainActivity : AppCompatActivity() {
         bottomNavBar?.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.logout){
                 logout()
+            } else if (item.itemId == R.id.edit_profile){
+                navController?.navigate(R.id.action_aiHelperFragment_to_editProfileFragment)
+                navController?.navigate(R.id.action_uploadPostFragment_to_editProfileFragment)
+            } else if (item.itemId == R.id.ai){
+                navController?.navigate(R.id.action_editProfileFragment_to_aiHelperFragment)
+                navController?.navigate(R.id.action_uploadPostFragment_to_aiHelperFragment)
+            } else if (item.itemId == R.id.upload_post){
+                navController?.navigate(R.id.action_editProfileFragment_to_uploadPostFragment)
+                navController?.navigate(R.id.action_aiHelperFragment_to_uploadPostFragment)
             }
-
             false
         }
 
@@ -56,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signOut()
         Log.d("LOGOUT", "Logged out")
 
-        navController?.navigate(R.id.action_aiHelperFragment2_to_landingPageFragment)
+        navController?.navigate(R.id.action_aiHelperFragment_to_landingPageFragment)
         hideBottomNavBar()
     }
 

@@ -60,7 +60,7 @@ class LogInFragment : Fragment() {
                 Log.d("LogIn", "LogIn was successful")
                 val mainActivity = activity as MainActivity
                 mainActivity.showBottomNavBar()
-                findNavController().navigate(R.id.action_logInFragment_to_editProfileFragment)
+                findNavController().navigate(R.id.action_logInFragment_to_aiHelperFragment)
             }
             else {
                 Log.d("LogIn", task.exception.toString())
