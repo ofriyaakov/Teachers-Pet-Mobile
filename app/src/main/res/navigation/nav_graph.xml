@@ -82,4 +82,10 @@
             android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/discoverPageFragment"
+        android:name="com.example.teacherspet.DiscoverPageFragment"
+        android:label="fragment_discover_page"
+        tools:layout="@layout/fragment_discover_page" >
+    </fragment>
 </navigation>

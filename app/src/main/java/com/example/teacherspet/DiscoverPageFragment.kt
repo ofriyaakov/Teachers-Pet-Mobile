@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.teacherspet.adapter.PostsRecyclerAdapter
 import com.example.teacherspet.databinding.FragmentDiscoverPageBinding
+import com.example.teacherspet.model.Model
 
 
 class DiscoverPageFragment : Fragment() {
@@ -28,42 +29,22 @@ class DiscoverPageFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.layoutManager = layoutManager
 
-        adapter = PostsRecyclerAdapter(viewModel.students.value)
+        adapter = PostsRecyclerAdapter(viewModel.posts.value)
 
-        viewModel.students.observe(viewLifecycleOwner) {
+        viewModel.posts.observe(viewLifecycleOwner) {
             adapter?.update(it)
             adapter?.notifyDataSetChanged()
 
-            binding?.progressBar?.visibility = View.GONE
+//            binding?.progressBar?.visibility = View.GONE
         }
 
         binding?.swipeToRefresh?.setOnRefreshListener {
-            viewModel.refreshAllStudents()
+            viewModel.refreshAllPosts()
         }
 
         Model.shared.loadingState.observe(viewLifecycleOwner) { state ->
             binding?.swipeToRefresh?.isRefreshing = state == Model.LoadingState.LOADING
         }
-
-        adapter?.listener = object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                Log.d("TAG", "On click Activity listener on position $position")
-            }
-
-            override fun onItemClick(student: Student?) {
-                student?.let {
-                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.name)
-                    binding?.root?.let {
-                        Navigation.findNavController(it).navigate(action)
-                    }
-                }
-            }
-        }
-        binding?.recyclerView?.adapter = adapter
-
-
-        val action = StudentsListFragmentDirections.actionGlobalAddStudentFragment()
-        binding?.addStudentButton?.setOnClickListener(Navigation.createNavigateOnClickListener(action))
 
         return binding?.root
     }

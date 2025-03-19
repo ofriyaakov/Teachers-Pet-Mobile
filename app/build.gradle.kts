@@ -86,6 +86,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.cloudinary.android)
     implementation(libs.generativeai)
+    implementation(libs.androidx.swiperefreshlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
