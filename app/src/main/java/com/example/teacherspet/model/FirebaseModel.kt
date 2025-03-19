@@ -1,3 +1,5 @@
+package com.example.teacherspet.model
+
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
@@ -11,8 +13,8 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.File
-import com.example.teacherspet.model.User
-import com.example.teacherspet.model.Post
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 
 class FirebaseModel {
     private val database = Firebase.firestore
@@ -32,6 +34,10 @@ class FirebaseModel {
             .addOnFailureListener {
                 Log.d("TAG", it.toString() + it.message)
             }
+    }
+
+    fun getUser(id: String): Task<DocumentSnapshot> {
+        return database.collection(Constants.Collections.USERS).document(id).get()
     }
 
     fun addPost(post: Post, callback: EmptyCallback) {
@@ -63,6 +69,7 @@ class FirebaseModel {
                 }
         }
     }
+
     fun uploadImage(image: Bitmap, name: String, callback: (String?) -> Unit) {
         val storageRef = storage.reference
         val imageRef = storageRef.child("images/$name.jpg")

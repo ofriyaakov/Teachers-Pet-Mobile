@@ -74,7 +74,7 @@ class SignInFragment : Fragment() {
                     Log.d("SignIn", "SignIn was successful")
                     user.id = task.result.user?.uid.toString()
 
-                    Model.shared.add(user) {
+                    Model.shared.addUser(user) {
                         Model.Storage.CLOUDINARY
                     }
 

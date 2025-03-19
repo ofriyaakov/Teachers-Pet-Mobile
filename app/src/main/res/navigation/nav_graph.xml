@@ -13,8 +13,8 @@
             android:id="@+id/action_landingPageFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
         <action
-            android:id="@+id/action_landingPageFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            android:id="@+id/action_landingPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -34,7 +34,7 @@
             android:id="@+id/action_logInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
         <action
-            android:id="@+id/action_logInFragment_to_uploadPostFragment"
+            android:id="@+id/action_logInFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
@@ -42,4 +42,9 @@
         android:name="com.example.teacherspet.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/uploadPostFragment"
+        android:name="com.example.teacherspet.UploadPostFragment"
+        android:label="fragment_upload_post"
+        tools:layout="@layout/fragment_upload_post" />
 </navigation>

@@ -81,7 +81,7 @@ class EditProfileFragment : Fragment() {
         }
 
         if (userEdit != null) {
-            Model.shared.add(userEdit) {
+            Model.shared.addUser(userEdit) {
                 Model.Storage.CLOUDINARY
             }
         }
