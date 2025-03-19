@@ -1,7 +1,6 @@
 package com.example.teacherspet
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,17 @@ import com.example.teacherspet.adapter.PostsRecyclerAdapter
 import com.example.teacherspet.databinding.FragmentDiscoverPageBinding
 import com.example.teacherspet.model.Model
 
-
 class DiscoverPageFragment : Fragment() {
     private var binding: FragmentDiscoverPageBinding? = null
     private var adapter: PostsRecyclerAdapter? = null
 
     private val viewModel: PostsListViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +51,24 @@ class DiscoverPageFragment : Fragment() {
         }
 
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getAllPosts()
+    }
+
+    private fun getAllPosts() {
+        viewModel.refreshAllPosts()
     }
 
     companion object {
