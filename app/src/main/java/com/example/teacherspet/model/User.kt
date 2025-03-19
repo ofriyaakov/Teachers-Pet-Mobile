@@ -9,12 +9,12 @@ import com.example.teacherspet.base.TeachersPetApplication
 
 @Entity
 data class User(
-    @PrimaryKey val id: String,
-    val name: String,
+    @PrimaryKey var id: String,
+    var name: String,
     val grade: String,
     val profession: String,
     val email: String,
-    val password: String,
+    var password: String,
     val lastUpdated: Long? = null
 ) {
 
