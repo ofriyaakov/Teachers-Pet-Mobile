@@ -46,15 +46,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavBar?.setOnItemSelectedListener { item ->
             if (item.itemId == R.id.logout){
                 logout()
-            } else if (item.itemId == R.id.edit_profile){
-                navController?.navigate(R.id.action_aiHelperFragment_to_editProfileFragment)
-                navController?.navigate(R.id.action_uploadPostFragment_to_editProfileFragment)
-            } else if (item.itemId == R.id.ai){
-                navController?.navigate(R.id.action_editProfileFragment_to_aiHelperFragment)
-                navController?.navigate(R.id.action_uploadPostFragment_to_aiHelperFragment)
-            } else if (item.itemId == R.id.upload_post){
-                navController?.navigate(R.id.action_editProfileFragment_to_uploadPostFragment)
-                navController?.navigate(R.id.action_aiHelperFragment_to_uploadPostFragment)
+            } else {
+                NavigationUI.onNavDestinationSelected(item, navController!!)
             }
             false
         }

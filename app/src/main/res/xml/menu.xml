@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/ai"
+        android:id="@+id/aiHelperFragment"
         android:title="AI" />
     <item
-        android:id="@+id/edit_profile"
+        android:id="@+id/editProfileFragment"
         android:title="Edit Profile" />
     <item
-        android:id="@+id/upload_post"
+        android:id="@+id/uploadPostFragment"
         android:title="Upload Post" />
     <item
         android:id="@+id/logout"
