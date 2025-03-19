@@ -10,7 +10,7 @@ import com.example.teacherspet.model.User
 
 @Dao
 interface PostDao {
-    @Query("SELECT * FROM User")
+    @Query("SELECT * FROM Post")
     fun getAllPosts(): LiveData<List<Post>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
