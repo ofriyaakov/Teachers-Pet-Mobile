@@ -3,6 +3,12 @@
         android:id="@+id/ai"
         android:title="AI" />
     <item
+        android:id="@+id/edit_profile"
+        android:title="Edit Profile" />
+    <item
+        android:id="@+id/upload_post"
+        android:title="Upload Post" />
+    <item
         android:id="@+id/logout"
         android:title="LogOut" />
 </menu>

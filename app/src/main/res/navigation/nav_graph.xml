@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_landingPageFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
