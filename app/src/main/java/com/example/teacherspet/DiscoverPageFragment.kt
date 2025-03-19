@@ -1,59 +1,77 @@
 package com.example.teacherspet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.teacherspet.databinding.FragmentDiscoverPageBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DiscoverPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DiscoverPageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var binding: FragmentDiscoverPageBinding? = null
+    private var adapter: PostsRecyclerAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: PostsListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_discover_page, container, false)
+        binding = FragmentDiscoverPageBinding.inflate(inflater, container, false)
+
+        binding?.recyclerView?.setHasFixedSize(true)
+        val layoutManager = LinearLayoutManager(context)
+        binding?.recyclerView?.layoutManager = layoutManager
+
+        adapter = PostsRecyclerAdapter(viewModel.students.value)
+
+        viewModel.students.observe(viewLifecycleOwner) {
+            adapter?.update(it)
+            adapter?.notifyDataSetChanged()
+
+            binding?.progressBar?.visibility = View.GONE
+        }
+
+        binding?.swipeToRefresh?.setOnRefreshListener {
+            viewModel.refreshAllStudents()
+        }
+
+        Model.shared.loadingState.observe(viewLifecycleOwner) { state ->
+            binding?.swipeToRefresh?.isRefreshing = state == Model.LoadingState.LOADING
+        }
+
+        adapter?.listener = object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("TAG", "On click Activity listener on position $position")
+            }
+
+            override fun onItemClick(student: Student?) {
+                student?.let {
+                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.name)
+                    binding?.root?.let {
+                        Navigation.findNavController(it).navigate(action)
+                    }
+                }
+            }
+        }
+        binding?.recyclerView?.adapter = adapter
+
+
+        val action = StudentsListFragmentDirections.actionGlobalAddStudentFragment()
+        binding?.addStudentButton?.setOnClickListener(Navigation.createNavigateOnClickListener(action))
+
+        return binding?.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DiscoverPageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             DiscoverPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
             }
     }
 }
