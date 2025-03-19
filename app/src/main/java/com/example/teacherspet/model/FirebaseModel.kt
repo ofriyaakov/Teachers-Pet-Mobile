@@ -82,8 +82,8 @@ class FirebaseModel {
         }
     }
 
-    fun getAllPosts(sinceLastUpdated: Long, callback: PostsCallback) {
-
+    fun getAllPosts(callback: PostsCallback) {
+//sinceLastUpdated: Long,
         database.collection(Constants.Collections.POSTS)
 //            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
             .get()

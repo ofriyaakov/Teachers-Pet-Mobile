@@ -10,6 +10,7 @@ import com.example.teacherspet.model.User
 @Database(entities = [User::class], version = 3)
 abstract class AppLocalDbRepository: RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun postDao(): PostDao
 }
 
 object AppLocalDb {
