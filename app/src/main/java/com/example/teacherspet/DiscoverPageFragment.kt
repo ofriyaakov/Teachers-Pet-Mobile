@@ -34,21 +34,23 @@ class DiscoverPageFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.layoutManager = layoutManager
 
-        Log.d("ALL POSTS - 04", viewModel.posts.value.toString())
+        // Initialize adapter with empty list (avoid passing null)
+        adapter = PostsRecyclerAdapter(listOf())
+        binding?.recyclerView?.adapter = adapter // SET THE ADAPTER!
 
-        adapter = PostsRecyclerAdapter(viewModel.posts.value)
-
-        viewModel.posts.observe(viewLifecycleOwner) {
-            adapter?.update(it)
+        // Observe the posts LiveData
+        viewModel.posts.observe(viewLifecycleOwner) { posts ->
+            Log.d("ALL POSTS - LiveData", posts.toString()) // For debugging
+            adapter?.update(posts)
             adapter?.notifyDataSetChanged()
-
-//            binding?.progressBar?.visibility = View.GONE
         }
 
+        // Swipe to refresh logic
         binding?.swipeToRefresh?.setOnRefreshListener {
             viewModel.refreshAllPosts()
         }
 
+        // Loading state observation
         Model.shared.loadingState.observe(viewLifecycleOwner) { state ->
             binding?.swipeToRefresh?.isRefreshing = state == Model.LoadingState.LOADING
         }
