@@ -1,17 +1,21 @@
 package com.example.teacherspet.model.dao
 
 import android.content.Context
+import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.teacherspet.base.TeachersPetApplication
 import com.example.teacherspet.model.User
+import com.example.teacherspet.model.Post
 
-@Database(entities = [User::class], version = 3)
+@Database(entities = [User::class, Post::class], version = 4)
 abstract class AppLocalDbRepository: RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun postDao(): PostDao
 }
 
+@Dao
 object AppLocalDb {
 
     val database: AppLocalDbRepository by lazy {

@@ -9,6 +9,9 @@
         android:id="@+id/uploadPostFragment"
         android:title="Upload Post" />
     <item
+        android:id="@+id/discoverPageFragment"
+        android:title="Discover" />
+    <item
         android:id="@+id/logout"
         android:title="LogOut" />
 </menu>

@@ -1,7 +1,9 @@
 package com.example.teacherspet.model
 
 import android.graphics.Bitmap
+import android.os.Looper
 import android.util.Log
+import androidx.core.os.HandlerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
@@ -29,6 +31,12 @@ class Model private constructor() {
     private val firebaseModel = FirebaseModel()
     private val cloudinaryModel = CloudinaryModel()
 
+    private val database: AppLocalDbRepository = AppLocalDb.database
+    private var executor = Executors.newSingleThreadExecutor()
+    private var mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
+    val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
+    val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
+
     companion object {
         val shared = try {
             Model()
@@ -39,7 +47,6 @@ class Model private constructor() {
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        Log.d("onSavedClicked-03", user.toString())
         firebaseModel.addUser(user) {
             firebaseModel.addUser(user, callback)
         }
@@ -58,8 +65,8 @@ class Model private constructor() {
                     name = post.id,
                     callback = { uri ->
                         if (!uri.isNullOrBlank()) {
-                            val st = post.copy(imageUri = uri)
-                            firebaseModel.addPost(st, callback)
+                            val newPost = post.copy(imageUri = uri)
+                            firebaseModel.addPost(newPost, callback)
                         } else {
                             callback()
                         }
@@ -105,6 +112,28 @@ class Model private constructor() {
             onSuccess = onSuccess,
             onError = onError
         )
+    }
+
+    fun refreshAllPosts() {
+        // TODO: use the comments in case we want to order by last update time
+        loadingState.postValue(LoadingState.LOADING)
+//        val lastUpdated: Long = Post.lastUpdated
+            firebaseModel.getAllPosts() { posts ->
+            executor.execute {
+//                var currentTime = lastUpdated
+                for (post in posts) {
+                    database.postDao().insertAll(post)
+//                    student.lastUpdated?.let {
+//                        if (currentTime < it) {
+//                            currentTime = it
+//                        }
+//                    }
+                }
+
+//                Student.lastUpdated = currentTime
+                loadingState.postValue(LoadingState.LOADED)
+            }
+        }
     }
 
 }

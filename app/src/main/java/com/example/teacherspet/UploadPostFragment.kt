@@ -29,7 +29,14 @@ class UploadPostFragment : Fragment() {
     private lateinit var postButton: Button
     private lateinit var cancelButton: Button
     private var selectedImageUri: Uri? = null
-    private val userDetails: User? = null
+    private val userDetails: User? = User(
+        id = "",
+        name = "",
+        grade = "",
+        profession = "",
+        email = "",
+        password = "")
+
     private var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +60,8 @@ class UploadPostFragment : Fragment() {
         var userDetailsDef = auth.currentUser?.uid?.let { Model.shared.getUser(it) }
 
         userDetailsDef?.addOnSuccessListener {
-            userDetails?.id = userDetailsDef.result.data?.get("id").toString()
+               userDetails?.id = userDetailsDef.result.data?.get("id").toString()
+               userDetails?.name = userDetailsDef.result.data?.get("name").toString()
         }
 
         postButton = view.findViewById(R.id.postButton)
@@ -89,7 +97,8 @@ class UploadPostFragment : Fragment() {
             id = UUID.randomUUID().toString(),
             userId = userDetails?.id ?: "",
             imageUri = selectedImageUri?.toString() ?: "",
-            description = postDescription?.text?.toString() ?: ""
+            description = postDescription?.text?.toString() ?: "",
+            userName = userDetails?.name ?: ""
         )
 
         binding?.postImage?.isDrawingCacheEnabled = true

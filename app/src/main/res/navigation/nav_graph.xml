@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_aiHelperFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -69,6 +72,9 @@
         <action
             android:id="@+id/action_editProfileFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/uploadPostFragment"
@@ -81,5 +87,23 @@
         <action
             android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverPageFragment"
+        android:name="com.example.teacherspet.DiscoverPageFragment"
+        android:label="fragment_discover_page"
+        tools:layout="@layout/fragment_discover_page" >
+        <action
+            android:id="@+id/action_discoverPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
     </fragment>
 </navigation>
