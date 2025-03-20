@@ -10,6 +10,7 @@ import com.example.teacherspet.model.Post
 class PostsListViewModel(): ViewModel() {
 
     var posts: LiveData<List<Post>> = Model.shared.posts
+    var postsByUserId: LiveData<List<Post>> = Model.shared.postsByUserId
 
     fun refreshAllPosts() {
         Model.shared.refreshAllPosts()
@@ -19,7 +20,4 @@ class PostsListViewModel(): ViewModel() {
         Model.shared.refreshPostsByUserId(userId)
     }
 
-//    fun filterPosts(userId: String) {
-//        listOf(posts).filter { it.userId == userId}
-//    }
 }

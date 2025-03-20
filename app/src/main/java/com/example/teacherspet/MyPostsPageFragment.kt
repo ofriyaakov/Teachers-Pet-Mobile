@@ -17,7 +17,7 @@ class MyPostsPageFragment : Fragment() {
     private var binding: FragmentMyPostsPageBinding? = null
     private var adapter: PostsRecyclerAdapter? = null
     private var auth = FirebaseAuth.getInstance()
-    private var userId = auth.uid.toString()
+    private var userId = auth.currentUser?.uid.toString()
 
     private val viewModel: PostsListViewModel by viewModels()
 
@@ -41,7 +41,7 @@ class MyPostsPageFragment : Fragment() {
         binding?.recyclerView?.adapter = adapter
 
         //TODO: cahnge posts to postsByUserId
-        viewModel.posts.observe(viewLifecycleOwner) { posts ->
+        viewModel.postsByUserId.observe(viewLifecycleOwner) { posts ->
             adapter?.update(posts)
             adapter?.notifyDataSetChanged()
         }
@@ -68,11 +68,12 @@ class MyPostsPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        getPostsByUserId()
+        getPostsByUserId()
     }
 
     private fun getPostsByUserId() {
-        viewModel.refreshPostsByUserId(auth.uid.toString())
+//        Log.d("getPostsByUserId", viewModel.refreshPostsByUserId(userId).toString())
+        viewModel.refreshPostsByUserId(userId)
     }
 
     companion object {

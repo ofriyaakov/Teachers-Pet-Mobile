@@ -39,7 +39,7 @@ class Model private constructor() {
     val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
     val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
     private val postsByUserIdMutable = MutableLiveData<List<Post>>()
-//    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId(auth.currentUser?.uid.toString())
+    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId(auth.currentUser?.uid.toString())
 
     companion object {
         val shared = try {
