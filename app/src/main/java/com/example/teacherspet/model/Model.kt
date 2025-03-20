@@ -1,7 +1,9 @@
 package com.example.teacherspet.model
 
 import android.graphics.Bitmap
+import android.os.Looper
 import android.util.Log
+import androidx.core.os.HandlerCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
@@ -11,6 +13,7 @@ import com.example.teacherspet.model.dao.AppLocalDb.database
 import com.example.teacherspet.model.dao.AppLocalDbRepository
 import com.example.teacherspet.model.dao.UserDao
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -28,6 +31,15 @@ class Model private constructor() {
 
     private val firebaseModel = FirebaseModel()
     private val cloudinaryModel = CloudinaryModel()
+    private var auth = FirebaseAuth.getInstance()
+
+    private val database: AppLocalDbRepository = AppLocalDb.database
+    private var executor = Executors.newSingleThreadExecutor()
+    private var mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
+    val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
+    val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
+    private val postsByUserIdMutable = MutableLiveData<List<Post>>()
+    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId(auth.currentUser?.uid.toString())
 
     companion object {
         val shared = try {
@@ -39,7 +51,6 @@ class Model private constructor() {
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        Log.d("onSavedClicked-03", user.toString())
         firebaseModel.addUser(user) {
             firebaseModel.addUser(user, callback)
         }
@@ -58,8 +69,8 @@ class Model private constructor() {
                     name = post.id,
                     callback = { uri ->
                         if (!uri.isNullOrBlank()) {
-                            val st = post.copy(imageUri = uri)
-                            firebaseModel.addPost(st, callback)
+                            val newPost = post.copy(imageUri = uri)
+                            firebaseModel.addPost(newPost, callback)
                         } else {
                             callback()
                         }
@@ -107,4 +118,41 @@ class Model private constructor() {
         )
     }
 
+    fun refreshAllPosts() {
+        // TODO: use the comments in case we want to order by last update time
+        loadingState.postValue(LoadingState.LOADING)
+//        val lastUpdated: Long = Post.lastUpdated
+            firebaseModel.getAllPosts() { posts ->
+            executor.execute {
+//                var currentTime = lastUpdated
+                for (post in posts) {
+                    database.postDao().insertAll(post)
+//                    Post.lastUpdated?.let {
+//                        if (currentTime < it) {
+//                            currentTime = it
+//                        }
+//                    }
+                }
+
+//                Post.lastUpdated = currentTime
+                loadingState.postValue(LoadingState.LOADED)
+            }
+        }
+    }
+
+    fun refreshPostsByUserId(userId: String) {
+        loadingState.postValue(LoadingState.LOADING)
+        firebaseModel.getPostsByUserId(userId) { posts ->
+            executor.execute {
+                for (post in posts) {
+                    database.postDao().insertAll(post)
+                }
+                loadingState.postValue(LoadingState.LOADED)
+            }
+        }
+    }
+
+//    fun postsByUser(userId: String) {
+//        postsByUserIdMutable.value=listOf(firebaseModel.getPostsByUserId(userId))
+//    }
 }

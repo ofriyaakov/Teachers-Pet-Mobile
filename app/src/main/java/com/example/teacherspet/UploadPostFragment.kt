@@ -14,6 +14,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.databinding.FragmentUploadPostBinding
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.model.Post
@@ -29,7 +30,14 @@ class UploadPostFragment : Fragment() {
     private lateinit var postButton: Button
     private lateinit var cancelButton: Button
     private var selectedImageUri: Uri? = null
-    private val userDetails: User? = null
+    private val userDetails: User? = User(
+        id = "",
+        name = "",
+        grade = "",
+        profession = "",
+        email = "",
+        password = "")
+
     private var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +61,8 @@ class UploadPostFragment : Fragment() {
         var userDetailsDef = auth.currentUser?.uid?.let { Model.shared.getUser(it) }
 
         userDetailsDef?.addOnSuccessListener {
-            userDetails?.id = userDetailsDef.result.data?.get("id").toString()
+               userDetails?.id = userDetailsDef.result.data?.get("id").toString()
+               userDetails?.name = userDetailsDef.result.data?.get("name").toString()
         }
 
         postButton = view.findViewById(R.id.postButton)
@@ -89,7 +98,8 @@ class UploadPostFragment : Fragment() {
             id = UUID.randomUUID().toString(),
             userId = userDetails?.id ?: "",
             imageUri = selectedImageUri?.toString() ?: "",
-            description = postDescription?.text?.toString() ?: ""
+            description = postDescription?.text?.toString() ?: "",
+            userName = userDetails?.name ?: ""
         )
 
         binding?.postImage?.isDrawingCacheEnabled = true
@@ -97,7 +107,7 @@ class UploadPostFragment : Fragment() {
         val bitmap = (binding?.postImage?.drawable as BitmapDrawable).bitmap
 
         Model.shared.addPost(post, bitmap, Model.Storage.CLOUDINARY) {
-            view?.let { Navigation.findNavController(it).popBackStack() }
+            view?.let { findNavController().navigate(R.id.action_uploadPostFragment_to_discoverPageFragment) }
         }
     }
     private fun clearForm() {

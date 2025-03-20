@@ -5,6 +5,7 @@ import android.net.Uri
 import android.util.Log
 import com.example.teacherspet.base.Constants
 import com.example.teacherspet.base.EmptyCallback
+import com.example.teacherspet.base.PostsCallback
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.memoryCacheSettings
@@ -43,14 +44,9 @@ class FirebaseModel {
     fun addPost(post: Post, callback: EmptyCallback) {
 
         val storageRef: StorageReference = storage.reference
-
         val file = Uri.fromFile(File(post.imageUri))
-
         val riversRef = storageRef.child("gs://teacher-s-pet-6c42a.firebasestorage.app/images")
-
         val uploadTask = riversRef.putFile(file)
-
-        val mountainsRef = storageRef.child("file.jpg")
 
         if (file !== null) {
 
@@ -84,5 +80,47 @@ class FirebaseModel {
                 callback(uri.toString())
             }
         }
+    }
+
+    fun getAllPosts(callback: PostsCallback) {
+//sinceLastUpdated: Long,
+        database.collection(Constants.Collections.POSTS)
+//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
+            .get()
+            .addOnCompleteListener {
+                when (it.isSuccessful) {
+                    true -> {
+                        val posts: MutableList<Post> = mutableListOf()
+                        for (json in it.result) {
+                            posts.add(Post.fromJSON(json.data))
+                        }
+                        Log.d("TAG", posts.size.toString())
+                        callback(posts)
+                    }
+
+                    false -> callback(listOf())
+                }
+            }
+    }
+
+    fun getPostsByUserId(userId: String, callback: PostsCallback) {
+//sinceLastUpdated: Long,
+        database.collection(Constants.Collections.POSTS)
+//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
+            .get()
+            .addOnCompleteListener {
+                when (it.isSuccessful) {
+                    true -> {
+                        val posts: MutableList<Post> = mutableListOf()
+                        for (json in it.result) {
+                            posts.add(Post.fromJSON(json.data))
+                        }
+                        Log.d("TAG", posts.size.toString())
+                        callback(posts)
+                    }
+
+                    false -> callback(listOf())
+                }
+            }
     }
 }

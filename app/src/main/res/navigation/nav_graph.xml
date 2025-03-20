@@ -42,6 +42,12 @@
         <action
             android:id="@+id/action_logInFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/aiHelperFragment"
@@ -57,6 +63,12 @@
         <action
             android:id="@+id/action_aiHelperFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -69,6 +81,12 @@
         <action
             android:id="@+id/action_editProfileFragment_to_uploadPostFragment"
             app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/uploadPostFragment"
@@ -81,5 +99,47 @@
         <action
             android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverPageFragment"
+        android:name="com.example.teacherspet.DiscoverPageFragment"
+        android:label="fragment_discover_page"
+        tools:layout="@layout/fragment_discover_page" >
+        <action
+            android:id="@+id/action_discoverPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostsPageFragment"
+        android:name="com.example.teacherspet.MyPostsPageFragment"
+        android:label="fragment_my_posts_page"
+        tools:layout="@layout/fragment_my_posts_page" >
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
     </fragment>
 </navigation>
