@@ -22,7 +22,7 @@ class PostViewHolder(
                 if (it.isNotBlank()) {
                     Picasso.get()
                         .load(it)
-                        .placeholder(R.drawable.avatar)
+                        .placeholder(R.drawable.ic_launcher_foreground)
                         .into(binding.postImage2)
                 }
 

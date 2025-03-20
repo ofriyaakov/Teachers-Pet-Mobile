@@ -1,6 +1,7 @@
 package com.example.teacherspet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,8 @@ class DiscoverPageFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.layoutManager = layoutManager
 
+        Log.d("ALL POSTS - 04", viewModel.posts.value.toString())
+
         adapter = PostsRecyclerAdapter(viewModel.posts.value)
 
         viewModel.posts.observe(viewLifecycleOwner) {
@@ -64,6 +67,7 @@ class DiscoverPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("ALL POSTS - 01", "on resome")
         getAllPosts()
     }
 

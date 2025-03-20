@@ -47,7 +47,6 @@ class Model private constructor() {
     }
 
     fun addUser(user: User, callback: EmptyCallback) {
-        Log.d("onSavedClicked-03", user.toString())
         firebaseModel.addUser(user) {
             firebaseModel.addUser(user, callback)
         }
@@ -66,8 +65,8 @@ class Model private constructor() {
                     name = post.id,
                     callback = { uri ->
                         if (!uri.isNullOrBlank()) {
-                            val st = post.copy(imageUri = uri)
-                            firebaseModel.addPost(st, callback)
+                            val newPost = post.copy(imageUri = uri)
+                            firebaseModel.addPost(newPost, callback)
                         } else {
                             callback()
                         }
@@ -116,13 +115,16 @@ class Model private constructor() {
     }
 
     fun refreshAllPosts() {
+        Log.d("ALL POSTS - 06", database.postDao().getAllPosts().value.toString())
         // TODO: use the comments in case we want to order by last update time
         loadingState.postValue(LoadingState.LOADING)
 //        val lastUpdated: Long = Post.lastUpdated
             firebaseModel.getAllPosts() { posts ->
+                Log.d("ALL POSTS - 02", posts.toString())
             executor.execute {
 //                var currentTime = lastUpdated
                 for (post in posts) {
+                    Log.d("ALL POSTS - 03 post", post.toString())
                     database.postDao().insertAll(post)
 //                    student.lastUpdated?.let {
 //                        if (currentTime < it) {
