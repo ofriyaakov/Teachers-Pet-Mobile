@@ -11,7 +11,6 @@ class PostsListViewModel: ViewModel() {
     var posts: LiveData<List<Post>> = Model.shared.posts
 
     fun refreshAllPosts() {
-        Log.d("ALL POSTS - 05", posts.toString())
         Model.shared.refreshAllPosts()
     }
 }

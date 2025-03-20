@@ -95,7 +95,6 @@ class FirebaseModel {
                             posts.add(Post.fromJSON(json.data))
                         }
                         Log.d("TAG", posts.size.toString())
-                        Log.d("ALL POSTS - 01", posts.toString())
                         callback(posts)
                     }
 

@@ -115,16 +115,13 @@ class Model private constructor() {
     }
 
     fun refreshAllPosts() {
-        Log.d("ALL POSTS - 06", database.postDao().getAllPosts().value.toString())
         // TODO: use the comments in case we want to order by last update time
         loadingState.postValue(LoadingState.LOADING)
 //        val lastUpdated: Long = Post.lastUpdated
             firebaseModel.getAllPosts() { posts ->
-                Log.d("ALL POSTS - 02", posts.toString())
             executor.execute {
 //                var currentTime = lastUpdated
                 for (post in posts) {
-                    Log.d("ALL POSTS - 03 post", post.toString())
                     database.postDao().insertAll(post)
 //                    student.lastUpdated?.let {
 //                        if (currentTime < it) {

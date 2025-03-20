@@ -40,7 +40,6 @@ class DiscoverPageFragment : Fragment() {
 
         // Observe the posts LiveData
         viewModel.posts.observe(viewLifecycleOwner) { posts ->
-            Log.d("ALL POSTS - LiveData", posts.toString()) // For debugging
             adapter?.update(posts)
             adapter?.notifyDataSetChanged()
         }
@@ -69,7 +68,6 @@ class DiscoverPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("ALL POSTS - 01", "on resome")
         getAllPosts()
     }
 
