@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teacherspet.adapter.PostsRecyclerAdapter
 import com.example.teacherspet.databinding.FragmentMyPostsPageBinding
 import com.example.teacherspet.model.Model
+import com.example.teacherspet.model.Post
 import com.google.firebase.auth.FirebaseAuth
 
 class MyPostsPageFragment : Fragment() {
@@ -40,7 +42,6 @@ class MyPostsPageFragment : Fragment() {
         adapter = PostsRecyclerAdapter(listOf())
         binding?.recyclerView?.adapter = adapter
 
-        //TODO: cahnge posts to postsByUserId
         viewModel.postsByUserId.observe(viewLifecycleOwner) { posts ->
             adapter?.update(posts)
             adapter?.notifyDataSetChanged()
@@ -52,6 +53,21 @@ class MyPostsPageFragment : Fragment() {
 
         Model.shared.loadingState.observe(viewLifecycleOwner) { state ->
             binding?.swipeToRefresh?.isRefreshing = state == Model.LoadingState.LOADING
+        }
+
+        adapter?.listener = object : OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("TAG", "On click Activity listener on position $position")
+            }
+
+            override fun onItemClick(post: Post?) {
+                post?.let {
+                    //TODO: add action
+                    binding?.root?.let {
+//                        Navigation.findNavController(it).navigate(action)
+                    }
+                }
+            }
         }
 
         return binding?.root
@@ -72,7 +88,6 @@ class MyPostsPageFragment : Fragment() {
     }
 
     private fun getPostsByUserId() {
-//        Log.d("getPostsByUserId", viewModel.refreshPostsByUserId(userId).toString())
         viewModel.refreshPostsByUserId(userId)
     }
 

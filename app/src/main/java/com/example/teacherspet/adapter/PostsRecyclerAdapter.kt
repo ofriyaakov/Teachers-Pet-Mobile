@@ -2,15 +2,16 @@ package com.example.teacherspet.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
-//import com.example.teacherspet.OnItemClickListener
+import com.example.teacherspet.OnItemClickListener
 import com.example.teacherspet.R
 import com.example.teacherspet.databinding.SinglePostBinding
 import com.example.teacherspet.model.Post
 
 class PostsRecyclerAdapter(private var posts: List<Post>?): RecyclerView.Adapter<PostViewHolder>() {
 
-//        var listener: OnItemClickListener? = null
+        var listener: OnItemClickListener? = null
 
         fun update(posts: List<Post>?) {
             this.posts = posts
@@ -21,7 +22,7 @@ class PostsRecyclerAdapter(private var posts: List<Post>?): RecyclerView.Adapter
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
             val inflator = LayoutInflater.from(parent.context)
             val binding = SinglePostBinding.inflate(inflator, parent, false)
-            return PostViewHolder(binding)
+            return PostViewHolder(binding, null)
         }
 
         override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
