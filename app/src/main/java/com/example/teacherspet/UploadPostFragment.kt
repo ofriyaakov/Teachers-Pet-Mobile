@@ -14,6 +14,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.databinding.FragmentUploadPostBinding
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.model.Post
@@ -106,7 +107,7 @@ class UploadPostFragment : Fragment() {
         val bitmap = (binding?.postImage?.drawable as BitmapDrawable).bitmap
 
         Model.shared.addPost(post, bitmap, Model.Storage.CLOUDINARY) {
-            view?.let { Navigation.findNavController(it).popBackStack() }
+            view?.let { findNavController().navigate(R.id.action_uploadPostFragment_to_discoverPageFragment) }
         }
     }
     private fun clearForm() {

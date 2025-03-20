@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                 logout()
             } else {
                 NavigationUI.onNavDestinationSelected(item, navController!!)
+                bottomNavBar!!.menu.findItem(item.itemId).isChecked = true
             }
             false
         }
