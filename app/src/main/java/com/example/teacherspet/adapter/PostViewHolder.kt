@@ -14,8 +14,7 @@ class PostViewHolder(
 
         fun bind(post: Post?) {
             this.post = post
-            // TODO: add username to Post model
-            binding.userNameTitle.text = post?.userId
+            binding.userNameTitle.text = post?.userName
             binding.postDescriptionTitle.text = post?.description
 
             post?.imageUri?.let {
