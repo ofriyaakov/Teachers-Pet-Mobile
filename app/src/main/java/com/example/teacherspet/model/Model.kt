@@ -13,6 +13,7 @@ import com.example.teacherspet.model.dao.AppLocalDb.database
 import com.example.teacherspet.model.dao.AppLocalDbRepository
 import com.example.teacherspet.model.dao.UserDao
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -30,13 +31,15 @@ class Model private constructor() {
 
     private val firebaseModel = FirebaseModel()
     private val cloudinaryModel = CloudinaryModel()
+//    private var auth = FirebaseAuth.getInstance()
 
     private val database: AppLocalDbRepository = AppLocalDb.database
     private var executor = Executors.newSingleThreadExecutor()
     private var mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
     val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
-    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId("")
     val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
+    private val postsByUserIdMutable = MutableLiveData<List<Post>>()
+    val postsByUserId: LiveData<List<Post>> get() = postsByUserIdMutable
 
     companion object {
         val shared = try {
@@ -137,7 +140,7 @@ class Model private constructor() {
         }
     }
 
-    fun refreshMyPosts(userId: String) {
+    fun refreshPostsByUserId(userId: String) {
         loadingState.postValue(LoadingState.LOADING)
         firebaseModel.getPostsByUserId(userId) { posts ->
             executor.execute {
@@ -148,4 +151,8 @@ class Model private constructor() {
             }
         }
     }
+
+//    fun postsByUser(userId: String) {
+//        postsByUserIdMutable.value=listOf(firebaseModel.getPostsByUserId(userId))
+//    }
 }
