@@ -12,6 +12,9 @@
         android:id="@+id/discoverPageFragment"
         android:title="Discover" />
     <item
+        android:id="@+id/myPostsPageFragment"
+        android:title="My Posts" />
+    <item
         android:id="@+id/logout"
         android:title="LogOut" />
 </menu>

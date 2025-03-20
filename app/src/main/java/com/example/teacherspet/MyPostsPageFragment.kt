@@ -68,7 +68,7 @@ class MyPostsPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getPostsByUserId()
+//        getPostsByUserId()
     }
 
     private fun getPostsByUserId() {

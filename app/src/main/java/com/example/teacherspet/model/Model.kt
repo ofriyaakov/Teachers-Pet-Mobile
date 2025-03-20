@@ -31,7 +31,7 @@ class Model private constructor() {
 
     private val firebaseModel = FirebaseModel()
     private val cloudinaryModel = CloudinaryModel()
-//    private var auth = FirebaseAuth.getInstance()
+    private var auth = FirebaseAuth.getInstance()
 
     private val database: AppLocalDbRepository = AppLocalDb.database
     private var executor = Executors.newSingleThreadExecutor()
@@ -39,7 +39,7 @@ class Model private constructor() {
     val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
     val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
     private val postsByUserIdMutable = MutableLiveData<List<Post>>()
-    val postsByUserId: LiveData<List<Post>> get() = postsByUserIdMutable
+//    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId(auth.currentUser?.uid.toString())
 
     companion object {
         val shared = try {
