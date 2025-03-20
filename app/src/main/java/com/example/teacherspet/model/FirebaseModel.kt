@@ -102,4 +102,25 @@ class FirebaseModel {
                 }
             }
     }
+
+    fun getPostsByUserId(userId: String, callback: PostsCallback) {
+//sinceLastUpdated: Long,
+        database.collection(Constants.Collections.POSTS)
+//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
+            .get()
+            .addOnCompleteListener {
+                when (it.isSuccessful) {
+                    true -> {
+                        val posts: MutableList<Post> = mutableListOf()
+                        for (json in it.result) {
+                            posts.add(Post.fromJSON(json.data))
+                        }
+                        Log.d("TAG", posts.size.toString())
+                        callback(posts)
+                    }
+
+                    false -> callback(listOf())
+                }
+            }
+    }
 }

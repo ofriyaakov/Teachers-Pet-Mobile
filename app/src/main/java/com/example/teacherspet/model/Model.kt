@@ -35,6 +35,7 @@ class Model private constructor() {
     private var executor = Executors.newSingleThreadExecutor()
     private var mainHandler = HandlerCompat.createAsync(Looper.getMainLooper())
     val posts: LiveData<List<Post>> = database.postDao().getAllPosts()
+    val postsByUserId: LiveData<List<Post>> = database.postDao().getPostsByUserId("")
     val loadingState: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
 
     companion object {
@@ -123,17 +124,28 @@ class Model private constructor() {
 //                var currentTime = lastUpdated
                 for (post in posts) {
                     database.postDao().insertAll(post)
-//                    student.lastUpdated?.let {
+//                    Post.lastUpdated?.let {
 //                        if (currentTime < it) {
 //                            currentTime = it
 //                        }
 //                    }
                 }
 
-//                Student.lastUpdated = currentTime
+//                Post.lastUpdated = currentTime
                 loadingState.postValue(LoadingState.LOADED)
             }
         }
     }
 
+    fun refreshMyPosts(userId: String) {
+        loadingState.postValue(LoadingState.LOADING)
+        firebaseModel.getPostsByUserId(userId) { posts ->
+            executor.execute {
+                for (post in posts) {
+                    database.postDao().insertAll(post)
+                }
+                loadingState.postValue(LoadingState.LOADED)
+            }
+        }
+    }
 }
