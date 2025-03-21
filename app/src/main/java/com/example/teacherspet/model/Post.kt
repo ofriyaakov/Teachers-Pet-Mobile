@@ -3,11 +3,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 @Entity
 data class Post(
-    @PrimaryKey val id: String,
-    val userId: String,
-    val imageUri: String,
-    val description: String,
-    val userName: String
+    @PrimaryKey var id: String,
+    var userId: String,
+    var imageUri: String?,
+    var description: String,
+    var userName: String
 ) {
 
     companion object {
@@ -34,7 +34,7 @@ data class Post(
             )
         }
     }
-    val json: Map<String, Any>
+    val json: HashMap<String, String?>
         get() = hashMapOf(
             ID_KEY to id,
             USER_ID_KEY to userId,

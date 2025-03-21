@@ -22,7 +22,7 @@ class PostsRecyclerAdapter(private var posts: List<Post>?): RecyclerView.Adapter
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
             val inflator = LayoutInflater.from(parent.context)
             val binding = SinglePostBinding.inflate(inflator, parent, false)
-            return PostViewHolder(binding, null)
+            return PostViewHolder(binding, listener)
         }
 
         override fun onBindViewHolder(holder: PostViewHolder, position: Int) {

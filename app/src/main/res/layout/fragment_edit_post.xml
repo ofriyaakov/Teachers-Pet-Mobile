@@ -34,6 +34,7 @@
         android:layout_height="47dp"
         android:layout_marginTop="24dp"
         android:text="upload image"
+        android:backgroundTint="#020202"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postImage" />
@@ -61,6 +62,7 @@
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
+        android:backgroundTint="#020202"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -72,6 +74,8 @@
         android:baselineAligned="false"
         android:text="cancel"
         android:textColorLink="#BCAAAA"
+        android:textColor="#040404"
+        android:backgroundTint="#FFFCFC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
