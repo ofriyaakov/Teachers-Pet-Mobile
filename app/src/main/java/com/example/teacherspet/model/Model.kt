@@ -60,6 +60,10 @@ class Model private constructor() {
         return firebaseModel.getUser(id)
     }
 
+    fun getPost(id: String): Task<DocumentSnapshot> {
+        return firebaseModel.getPost(id)
+    }
+
     fun addPost(post: Post, image: Bitmap?, storage: Storage, callback: EmptyCallback) {
         firebaseModel.addPost(post) {
             image?.let {

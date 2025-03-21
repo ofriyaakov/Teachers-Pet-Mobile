@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.teacherspet.adapter.PostsRecyclerAdapter
 import com.example.teacherspet.databinding.FragmentMyPostsPageBinding
@@ -40,7 +41,6 @@ class MyPostsPageFragment : Fragment() {
         binding?.recyclerView?.layoutManager = layoutManager
 
         adapter = PostsRecyclerAdapter(listOf())
-        binding?.recyclerView?.adapter = adapter
 
         viewModel.postsByUserId.observe(viewLifecycleOwner) { posts ->
             adapter?.update(posts)
@@ -56,19 +56,24 @@ class MyPostsPageFragment : Fragment() {
         }
 
         adapter?.listener = object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                Log.d("TAG", "On click Activity listener on position $position")
-            }
-
             override fun onItemClick(post: Post?) {
+                Log.d("TAG", "On click Activity listener on position oops")
                 post?.let {
-                    //TODO: add action
                     binding?.root?.let {
-//                        Navigation.findNavController(it).navigate(action)
+                        val action = MyPostsPageFragmentDirections
+                            .actionMyPostsPageFragmentToEditPostFragment(post.id)
+                        findNavController().navigate(action)
                     }
                 }
             }
+
+            override fun onPositionClick(position: Int) {
+                Log.d("TAG", "On click Activity listener on position $position")
+            }
+
         }
+
+        binding?.recyclerView?.adapter = adapter
 
         return binding?.root
     }

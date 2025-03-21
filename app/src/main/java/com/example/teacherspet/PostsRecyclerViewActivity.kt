@@ -8,7 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.teacherspet.model.Post
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int)
+    fun onPositionClick(position: Int)
     fun onItemClick(post: Post?)
 }
 

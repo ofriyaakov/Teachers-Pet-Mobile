@@ -41,6 +41,10 @@ class FirebaseModel {
         return database.collection(Constants.Collections.USERS).document(id).get()
     }
 
+    fun getPost(id: String): Task<DocumentSnapshot> {
+        return database.collection(Constants.Collections.POSTS).document(id).get()
+    }
+
     fun addPost(post: Post, callback: EmptyCallback) {
 
         val storageRef: StorageReference = storage.reference
