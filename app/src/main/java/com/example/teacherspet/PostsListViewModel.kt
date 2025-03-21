@@ -1,8 +1,6 @@
 package com.example.teacherspet
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.model.Post

@@ -2,10 +2,8 @@ package com.example.teacherspet.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherspet.OnItemClickListener
-import com.example.teacherspet.R
 import com.example.teacherspet.databinding.SinglePostBinding
 import com.example.teacherspet.model.Post
 

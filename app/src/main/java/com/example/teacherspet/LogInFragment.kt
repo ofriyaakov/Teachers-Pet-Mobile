@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -67,8 +66,6 @@ class LogInFragment : Fragment() {
             }
         }
     }
-
-
 
     companion object {
         @JvmStatic

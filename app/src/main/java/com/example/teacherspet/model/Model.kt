@@ -9,12 +9,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
 import java.util.concurrent.Executors
 import com.example.teacherspet.model.dao.AppLocalDb
-import com.example.teacherspet.model.dao.AppLocalDb.database
 import com.example.teacherspet.model.dao.AppLocalDbRepository
-import com.example.teacherspet.model.dao.UserDao
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 
 class Model private constructor() {

@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.teacherspet.R
 import com.example.teacherspet.model.Post
-import com.example.teacherspet.utils.extensions.toFile
 
 class PostsAdapter(private val posts: List<Post>?): BaseAdapter() {
 

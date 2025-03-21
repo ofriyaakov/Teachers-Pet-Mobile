@@ -1,4 +1,5 @@
 package com.example.teacherspet
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
@@ -12,8 +13,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.databinding.FragmentUploadPostBinding
 import com.example.teacherspet.model.Model

@@ -2,7 +2,6 @@ package com.example.teacherspet
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,19 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-import androidx.transition.Visibility
 import com.example.teacherspet.base.Constants
 import com.example.teacherspet.databinding.FragmentEditPostBinding
-import com.example.teacherspet.databinding.FragmentEditProfileBinding
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.model.Post
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
-import java.util.UUID
 
 private const val POST_ID = "postId"
 

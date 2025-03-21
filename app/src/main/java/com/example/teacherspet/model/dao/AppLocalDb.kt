@@ -1,6 +1,5 @@
 package com.example.teacherspet.model.dao
 
-import android.content.Context
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room

@@ -16,11 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AiHelperFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AiHelperFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

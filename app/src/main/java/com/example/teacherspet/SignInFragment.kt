@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.databinding.FragmentSignInBinding
 import com.example.teacherspet.model.User
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class SignInFragment : Fragment() {
     private var binding: FragmentSignInBinding? = null

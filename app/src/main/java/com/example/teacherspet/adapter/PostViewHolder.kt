@@ -1,7 +1,6 @@
 package com.example.teacherspet.adapter
 
 import android.util.Log
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherspet.R
 import com.example.teacherspet.databinding.SinglePostBinding
