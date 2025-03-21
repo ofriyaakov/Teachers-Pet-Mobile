@@ -87,9 +87,7 @@ class FirebaseModel {
     }
 
     fun getAllPosts(callback: PostsCallback) {
-//sinceLastUpdated: Long,
         database.collection(Constants.Collections.POSTS)
-//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
             .get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -107,10 +105,8 @@ class FirebaseModel {
             }
     }
 
-    fun getPostsByUserId(userId: String, callback: PostsCallback) {
-//sinceLastUpdated: Long,
+    fun getPostsByUserId(callback: PostsCallback) {
         database.collection(Constants.Collections.POSTS)
-//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
             .get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {

@@ -18,7 +18,6 @@ class PostViewHolder(
         init {
             itemView.setOnClickListener {
                 Log.d("TAG", "On click listener on position $adapterPosition yayyyy")
-//                    listener?.onItemClick(adapterPosition)
                 listener?.onItemClick(post)
             }
         }

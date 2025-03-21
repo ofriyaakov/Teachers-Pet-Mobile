@@ -13,14 +13,10 @@ import com.example.teacherspet.adapter.PostsRecyclerAdapter
 import com.example.teacherspet.databinding.FragmentMyPostsPageBinding
 import com.example.teacherspet.model.Model
 import com.example.teacherspet.model.Post
-import com.google.firebase.auth.FirebaseAuth
 
 class MyPostsPageFragment : Fragment() {
     private var binding: FragmentMyPostsPageBinding? = null
     private var adapter: PostsRecyclerAdapter? = null
-    private var auth = FirebaseAuth.getInstance()
-    private var userId = auth.currentUser?.uid.toString()
-
     private val viewModel: PostsListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +92,7 @@ class MyPostsPageFragment : Fragment() {
     }
 
     private fun getPostsByUserId() {
-        viewModel.refreshPostsByUserId(userId)
+        viewModel.refreshPostsByUserId()
     }
 
     companion object {

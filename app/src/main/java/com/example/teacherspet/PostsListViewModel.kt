@@ -14,8 +14,8 @@ class PostsListViewModel(): ViewModel() {
         Model.shared.refreshAllPosts()
     }
 
-    fun refreshPostsByUserId(userId: String) {
-        Model.shared.refreshPostsByUserId(userId)
+    fun refreshPostsByUserId() {
+        Model.shared.refreshPostsByUserId()
     }
 
 }
