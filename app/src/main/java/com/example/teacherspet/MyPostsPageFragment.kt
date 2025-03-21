@@ -52,7 +52,6 @@ class MyPostsPageFragment : Fragment() {
 
         adapter?.listener = object : OnItemClickListener {
             override fun onItemClick(post: Post?) {
-                Log.d("TAG", "On click Activity listener on position oops")
                 post?.let {
                     binding?.root?.let {
                         val action = MyPostsPageFragmentDirections
@@ -63,7 +62,6 @@ class MyPostsPageFragment : Fragment() {
             }
 
             override fun onPositionClick(position: Int) {
-                Log.d("TAG", "On click Activity listener on position $position")
             }
 
         }

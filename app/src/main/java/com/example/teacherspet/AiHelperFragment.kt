@@ -49,7 +49,6 @@ class AiHelperFragment : Fragment() {
             val response = withContext(Dispatchers.IO) {
                 generativeModel.generateContent(prompt.text.toString())
             }
-            response.text?.let { Log.d("KFIRIN", it) }
             answerView.text = response.text.toString()
         }
 

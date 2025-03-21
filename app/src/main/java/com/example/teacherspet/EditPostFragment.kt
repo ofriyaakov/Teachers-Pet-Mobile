@@ -82,10 +82,8 @@ class EditPostFragment : Fragment() {
     }
 
     private fun onPostClicked() {
-        Log.d("SAVE", "IM HERE")
         val db = FirebaseFirestore.getInstance()
         val documentRef = postId?.let { db.collection(Constants.Collections.POSTS).document(it) }
-        Log.d("SAVE", changedImage.toString())
 
         if (changedImage) {
             documentRef?.update("description", binding?.description?.text.toString())

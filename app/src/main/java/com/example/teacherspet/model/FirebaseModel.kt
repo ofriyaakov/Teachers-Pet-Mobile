@@ -96,7 +96,6 @@ class FirebaseModel {
                         for (json in it.result) {
                             posts.add(Post.fromJSON(json.data))
                         }
-                        Log.d("TAG", posts.size.toString())
                         callback(posts)
                     }
 
@@ -115,7 +114,6 @@ class FirebaseModel {
                         for (json in it.result) {
                             posts.add(Post.fromJSON(json.data))
                         }
-                        Log.d("TAG", posts.size.toString())
                         callback(posts)
                     }
 
