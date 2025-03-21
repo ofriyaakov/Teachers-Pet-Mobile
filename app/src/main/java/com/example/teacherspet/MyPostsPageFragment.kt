@@ -75,6 +75,10 @@ class MyPostsPageFragment : Fragment() {
 
         binding?.recyclerView?.adapter = adapter
 
+        binding?.editProfileBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_myPostsPageFragment_to_editProfileFragment)
+        }
+
         return binding?.root
     }
 

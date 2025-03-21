@@ -19,6 +19,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/editProfileBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="81dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#020202"
+        android:text="Edit Profile"
+        app:layout_constraintBottom_toTopOf="@+id/swipeToRefresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/myPostsTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefresh"
         android:layout_width="344dp"
