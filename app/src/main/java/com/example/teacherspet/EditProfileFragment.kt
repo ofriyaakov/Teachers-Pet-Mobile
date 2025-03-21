@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
 import com.example.teacherspet.databinding.FragmentEditProfileBinding
 import com.example.teacherspet.databinding.FragmentLogInBinding
 import com.example.teacherspet.model.Model
@@ -38,9 +39,6 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val returnButton: ImageButton = view.findViewById(R.id.returnButton)
-        val saveButton: Button = view.findViewById(R.id.nextButton)
-
         var userDetailsDef = auth.currentUser?.uid?.let { Model.shared.getUser(it) }
         userDetailsDef?.addOnSuccessListener {
             userDetails?.password = userDetailsDef.result.data?.get("password").toString()
@@ -48,14 +46,13 @@ class EditProfileFragment : Fragment() {
             binding?.nameInput?.setText(userDetailsDef.result.data?.get("name").toString())
             binding?.professionInput?.setText(userDetailsDef.result.data?.get("profession").toString())
             binding?.gradeInput?.setText(userDetailsDef.result.data?.get("grade").toString())
-//          binding?.locationInput?.setText(userDetailsDef.result.data?.get("id").toString())
         }
 
-        returnButton.setOnClickListener {
+        binding?.returnButton?.setOnClickListener {
             onReturnButtonClick()
         }
 
-        saveButton.setOnClickListener {
+        binding?.nextButton?.setOnClickListener {
             saveChanges()
         }
 
@@ -63,11 +60,10 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun onReturnButtonClick(){
-        //TODO: return to profile page
+        backToMyPosts()
     }
 
     private fun saveChanges() {
-
 
         val userEdit = auth.currentUser?.let {
             User(
@@ -86,6 +82,11 @@ class EditProfileFragment : Fragment() {
             }
         }
 
+        backToMyPosts()
+    }
+
+    private fun backToMyPosts() {
+        findNavController().navigate(R.id.action_editProfileFragment_to_myPostsPageFragment)
     }
 
 
