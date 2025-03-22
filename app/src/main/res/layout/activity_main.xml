@@ -29,7 +29,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:menu="@xml/menu"
     app:labelVisibilityMode="labeled"
-    app:itemTextColor="?android:textColorPrimary"
+    app:itemTextColor="@color/black"
     app:itemIconTint="?android:textColorPrimary"
     />
 
