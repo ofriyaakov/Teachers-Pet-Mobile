@@ -49,10 +49,13 @@ class EditProfileFragment : Fragment() {
             binding?.professionInput?.setText(userDetailsDef.result.data?.get("profession").toString())
             binding?.gradeInput?.setText(userDetailsDef.result.data?.get("grade").toString())
 
-            Picasso.get()
-                .load(userDetailsDef.result.data?.get("imageUri").toString())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .into(binding?.postImage)
+            if (userDetailsDef.result.data?.get("imageUri").toString() !== ""){
+                Picasso.get()
+                    .load(userDetailsDef.result.data?.get("imageUri").toString())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .into(binding?.postImage)
+
+            }
 
         }
 
