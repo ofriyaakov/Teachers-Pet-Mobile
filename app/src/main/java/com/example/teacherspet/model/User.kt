@@ -2,6 +2,7 @@ package com.example.teacherspet.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.teacherspet.model.Post.Companion.IMAGE_URI_KEY
 
 @Entity
 data class User(
@@ -11,6 +12,7 @@ data class User(
     val profession: String,
     val email: String,
     var password: String,
+    val imageUri: String
 ) {
 
     companion object {
@@ -20,6 +22,7 @@ data class User(
         const val PROFESSION_KEY = "profession"
         const val EMAIL_KEY = "email"
         const val PASSWORD_KEY = "password"
+        const val IMAGE_URI_KEY = "imageUri"
     }
 
     val json: Map<String, Any>
@@ -30,6 +33,7 @@ data class User(
             PROFESSION_KEY to PROFESSION_KEY,
             EMAIL_KEY to email,
             PASSWORD_KEY to password,
-        )
+            IMAGE_URI_KEY to imageUri,
+            )
 
 }

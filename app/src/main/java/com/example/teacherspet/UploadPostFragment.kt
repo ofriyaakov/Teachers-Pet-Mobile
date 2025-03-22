@@ -35,7 +35,8 @@ class UploadPostFragment : Fragment() {
         grade = "",
         profession = "",
         email = "",
-        password = "")
+        password = "",
+        imageUri = "")
 
     private var auth = FirebaseAuth.getInstance()
 

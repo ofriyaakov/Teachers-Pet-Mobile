@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_signInFragment_to_landingPageFragment"
             app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment"

@@ -59,7 +59,8 @@ class SignInFragment : Fragment() {
             profession = binding?.professionInput?.text?.toString() ?: "",
             grade = binding?.gradeInput?.text?.toString() ?: "",
             email = binding?.emailInput?.text?.toString() ?: "",
-            password = binding?.passwordInput?.text?.toString() ?: ""
+            password = binding?.passwordInput?.text?.toString() ?: "",
+            imageUri = ""
         )
 
 
@@ -85,6 +86,7 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("LogInAfterSignIn", "LogIn was successful")
+                    findNavController().navigate(R.id.action_signInFragment_to_discoverPageFragment)
                 }
                 else {
                     Log.d("LogInAfterSignIn", task.exception.toString())
