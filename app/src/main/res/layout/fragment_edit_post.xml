@@ -43,11 +43,12 @@
         android:id="@+id/description"
         android:layout_width="380dp"
         android:layout_height="150dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="post description"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadImageButton" />
 
@@ -56,13 +57,13 @@
         android:layout_width="173dp"
         android:layout_height="47dp"
         android:layout_marginTop="24dp"
+        android:backgroundTint="#020202"
         android:text="save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelButton"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        android:backgroundTint="#020202"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -82,5 +83,23 @@
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="#020101"
         app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="173dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:text="delete"
+        android:textColorLink="#BCAAAA"
+        android:textColor="#040404"
+        android:backgroundTint="#FFFCFC"
+        android:baselineAligned="false"
+        app:strokeColor="#020101"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cancelButton"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
