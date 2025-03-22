@@ -61,6 +61,12 @@ class Model private constructor() {
         return firebaseModel.getPost(id)
     }
 
+    fun deletePost(postId: String, callback: EmptyCallback) {
+        firebaseModel.deletePost(postId) {
+            firebaseModel.deletePost(postId, callback)
+        }
+    }
+
     fun addPost(post: Post, image: Bitmap?, storage: Storage, callback: EmptyCallback) {
         firebaseModel.addPost(post) {
             image?.let {

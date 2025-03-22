@@ -70,8 +70,8 @@ class FirebaseModel {
         }
     }
 
-    fun deletePost(post: Post, callback: EmptyCallback) {
-        database.collection(Constants.Collections.POSTS).document(post.id).delete()
+    fun deletePost(postId: String, callback: EmptyCallback) {
+        database.collection(Constants.Collections.POSTS).document(postId).delete()
             .addOnCompleteListener {
                 Log.d("DELETE", "POST DELETED")
                 callback()
