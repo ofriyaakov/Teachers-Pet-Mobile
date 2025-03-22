@@ -86,6 +86,8 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("LogInAfterSignIn", "LogIn was successful")
+                    val mainActivity = activity as MainActivity
+                    mainActivity.showBottomNavBar()
                     findNavController().navigate(R.id.action_signInFragment_to_discoverPageFragment)
                 }
                 else {
