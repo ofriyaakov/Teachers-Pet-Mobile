@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/aiHelperFragment"
+        android:title="AI" />
+    <item
+        android:id="@+id/uploadPostFragment"
+        android:title="Upload Post" />
+    <item
+        android:id="@+id/discoverPageFragment"
+        android:title="Discover" />
+    <item
+        android:id="@+id/myPostsPageFragment"
+        android:title="My Posts" />
+    <item
+        android:id="@+id/logout"
+        android:title="LogOut" />
+</menu>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "278201745490",
+    "project_id": "teacher-s-pet-6c42a",
+    "storage_bucket": "teacher-s-pet-6c42a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278201745490:android:2286701dfe526c88b41f8b",
+        "android_client_info": {
+          "package_name": "com.example.teacherspet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmX5zSQxZuLdO-AULVQqrB7Pq1hLuBFnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/landingPageFragment">
+    <fragment
+        android:id="@+id/landingPageFragment"
+        android:name="com.example.teacherspet.LandingPageFragment"
+        android:label="fragment_landing_page"
+        tools:layout="@layout/fragment_landing_page" >
+        <action
+            android:id="@+id/action_landingPageFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_landingPageFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.teacherspet.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.teacherspet.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aiHelperFragment"
+        android:name="com.example.teacherspet.AiHelperFragment"
+        android:label="fragment_ai_helper"
+        tools:layout="@layout/fragment_ai_helper" >
+        <action
+            android:id="@+id/action_aiHelperFragment_to_landingPageFragment"
+            app:destination="@id/landingPageFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_aiHelperFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.teacherspet.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_editProfileFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_editProfileFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadPostFragment"
+        android:name="com.example.teacherspet.UploadPostFragment"
+        android:label="fragment_upload_post"
+        tools:layout="@layout/fragment_upload_post" >
+        <action
+            android:id="@+id/action_uploadPostFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_uploadPostFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverPageFragment"
+        android:name="com.example.teacherspet.DiscoverPageFragment"
+        android:label="fragment_discover_page"
+        tools:layout="@layout/fragment_discover_page" >
+        <action
+            android:id="@+id/action_discoverPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_discoverPageFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostsPageFragment"
+        android:name="com.example.teacherspet.MyPostsPageFragment"
+        android:label="fragment_my_posts_page"
+        tools:layout="@layout/fragment_my_posts_page" >
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_aiHelperFragment"
+            app:destination="@id/aiHelperFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_uploadPostFragment"
+            app:destination="@id/uploadPostFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_discoverPageFragment"
+            app:destination="@id/discoverPageFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_editPostFragment"
+            app:destination="@id/editPostFragment" />
+        <action
+            android:id="@+id/action_myPostsPageFragment_to_editProfileFragment2"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPostFragment"
+        android:name="com.example.teacherspet.EditPostFragment"
+        android:label="fragment_edit_post"
+        tools:layout="@layout/fragment_edit_post" >
+        <action
+            android:id="@+id/action_editPostFragment_to_myPostsPageFragment"
+            app:destination="@id/myPostsPageFragment" />
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </fragment>
+</navigation>
