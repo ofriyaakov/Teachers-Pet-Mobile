@@ -62,7 +62,8 @@ class EditPostFragment : Fragment() {
         }
 
         deleteButton.setOnClickListener {
-//            onDeleteClicked()
+            onDeleteClicked()
+            findNavController().navigate(R.id.action_editPostFragment_to_myPostsPageFragment)
         }
 
         cancelButton.setOnClickListener {
@@ -120,6 +121,12 @@ class EditPostFragment : Fragment() {
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
         startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
+    }
+
+    private fun onDeleteClicked() {
+        Model.shared.deletePost(postId as String) {
+            Log.d("DELETE", "post deleted")
+        }
     }
 
     companion object {
