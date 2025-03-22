@@ -33,22 +33,18 @@ class DiscoverPageFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.layoutManager = layoutManager
 
-        // Initialize adapter with empty list (avoid passing null)
         adapter = PostsRecyclerAdapter(listOf())
-        binding?.recyclerView?.adapter = adapter // SET THE ADAPTER!
+        binding?.recyclerView?.adapter = adapter
 
-        // Observe the posts LiveData
         viewModel.posts.observe(viewLifecycleOwner) { posts ->
             adapter?.update(posts)
             adapter?.notifyDataSetChanged()
         }
 
-        // Swipe to refresh logic
         binding?.swipeToRefresh?.setOnRefreshListener {
             viewModel.refreshAllPosts()
         }
 
-        // Loading state observation
         Model.shared.loadingState.observe(viewLifecycleOwner) { state ->
             binding?.swipeToRefresh?.isRefreshing = state == Model.LoadingState.LOADING
         }
@@ -58,6 +54,7 @@ class DiscoverPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.refreshAllPosts()
     }
 
     override fun onDestroy() {

@@ -98,7 +98,8 @@ class UploadPostFragment : Fragment() {
             userId = userDetails?.id ?: "",
             imageUri = selectedImageUri?.toString() ?: "",
             description = postDescription?.text?.toString() ?: "",
-            userName = userDetails?.name ?: ""
+            userName = userDetails?.name ?: "",
+            isDeleted = false
         )
 
         binding?.postImage?.isDrawingCacheEnabled = true

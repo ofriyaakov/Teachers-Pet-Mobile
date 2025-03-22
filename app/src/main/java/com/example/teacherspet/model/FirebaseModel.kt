@@ -71,15 +71,16 @@ class FirebaseModel {
     }
 
     fun deletePost(postId: String, callback: EmptyCallback) {
-        database.collection(Constants.Collections.POSTS).document(postId).delete()
+        database.collection(Constants.Collections.POSTS).document(postId).update("isDeleted", true)
             .addOnCompleteListener {
-                Log.d("DELETE", "POST DELETED")
                 callback()
             }
             .addOnFailureListener {
                 Log.d("TAG", it.toString() + it.message)
             }
     }
+
+
 
     fun uploadImage(image: Bitmap, name: String, callback: (String?) -> Unit) {
         val storageRef = storage.reference
@@ -99,6 +100,7 @@ class FirebaseModel {
 
     fun getAllPosts(callback: PostsCallback) {
         database.collection(Constants.Collections.POSTS)
+            .whereNotEqualTo("isDeleted", true)
             .get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -117,12 +119,13 @@ class FirebaseModel {
 
     fun getPostsByUserId(callback: PostsCallback) {
         database.collection(Constants.Collections.POSTS)
+            .whereEqualTo("isDeleted", false)
             .get()
-            .addOnCompleteListener {
-                when (it.isSuccessful) {
+            .addOnCompleteListener {task->
+                when (task.isSuccessful) {
                     true -> {
                         val posts: MutableList<Post> = mutableListOf()
-                        for (json in it.result) {
+                        for (json in task.result) {
                             posts.add(Post.fromJSON(json.data))
                         }
                         callback(posts)

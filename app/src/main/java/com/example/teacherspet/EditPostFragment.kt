@@ -125,7 +125,8 @@ class EditPostFragment : Fragment() {
 
     private fun onDeleteClicked() {
         Model.shared.deletePost(postId as String) {
-            Log.d("DELETE", "post deleted")
+            Model.shared.refreshAllPosts()
+            Model.shared.refreshPostsByUserId()
         }
     }
 
