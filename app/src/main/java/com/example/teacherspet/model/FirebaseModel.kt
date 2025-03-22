@@ -87,9 +87,7 @@ class FirebaseModel {
     }
 
     fun getAllPosts(callback: PostsCallback) {
-//sinceLastUpdated: Long,
         database.collection(Constants.Collections.POSTS)
-//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
             .get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -98,7 +96,6 @@ class FirebaseModel {
                         for (json in it.result) {
                             posts.add(Post.fromJSON(json.data))
                         }
-                        Log.d("TAG", posts.size.toString())
                         callback(posts)
                     }
 
@@ -107,10 +104,8 @@ class FirebaseModel {
             }
     }
 
-    fun getPostsByUserId(userId: String, callback: PostsCallback) {
-//sinceLastUpdated: Long,
+    fun getPostsByUserId(callback: PostsCallback) {
         database.collection(Constants.Collections.POSTS)
-//            .whereGreaterThanOrEqualTo(Post.LAST_UPDATED, sinceLastUpdated.toFirebaseTimestamp)
             .get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
@@ -119,7 +114,6 @@ class FirebaseModel {
                         for (json in it.result) {
                             posts.add(Post.fromJSON(json.data))
                         }
-                        Log.d("TAG", posts.size.toString())
                         callback(posts)
                     }
 

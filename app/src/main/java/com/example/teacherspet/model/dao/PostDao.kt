@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.teacherspet.model.Post
-import com.example.teacherspet.model.User
 
 @Dao
 interface PostDao {

@@ -1,6 +1,5 @@
 package com.example.teacherspet.model.dao
 
-import android.content.Context
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
@@ -9,7 +8,7 @@ import com.example.teacherspet.base.TeachersPetApplication
 import com.example.teacherspet.model.User
 import com.example.teacherspet.model.Post
 
-@Database(entities = [User::class, Post::class], version = 5)
+@Database(entities = [User::class, Post::class], version = 6)
 abstract class AppLocalDbRepository: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun postDao(): PostDao

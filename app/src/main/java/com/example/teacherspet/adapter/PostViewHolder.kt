@@ -1,7 +1,6 @@
 package com.example.teacherspet.adapter
 
 import android.util.Log
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherspet.R
 import com.example.teacherspet.databinding.SinglePostBinding
@@ -19,7 +18,6 @@ class PostViewHolder(
         init {
             itemView.setOnClickListener {
                 Log.d("TAG", "On click listener on position $adapterPosition yayyyy")
-//                    listener?.onItemClick(adapterPosition)
                 listener?.onItemClick(post)
             }
         }

@@ -9,12 +9,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.teacherspet.base.EmptyCallback
 import java.util.concurrent.Executors
 import com.example.teacherspet.model.dao.AppLocalDb
-import com.example.teacherspet.model.dao.AppLocalDb.database
 import com.example.teacherspet.model.dao.AppLocalDbRepository
-import com.example.teacherspet.model.dao.UserDao
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 
 class Model private constructor() {
@@ -123,30 +120,20 @@ class Model private constructor() {
     }
 
     fun refreshAllPosts() {
-        // TODO: use the comments in case we want to order by last update time
         loadingState.postValue(LoadingState.LOADING)
-//        val lastUpdated: Long = Post.lastUpdated
             firebaseModel.getAllPosts() { posts ->
             executor.execute {
-//                var currentTime = lastUpdated
                 for (post in posts) {
                     database.postDao().insertAll(post)
-//                    Post.lastUpdated?.let {
-//                        if (currentTime < it) {
-//                            currentTime = it
-//                        }
-//                    }
                 }
-
-//                Post.lastUpdated = currentTime
                 loadingState.postValue(LoadingState.LOADED)
             }
         }
     }
 
-    fun refreshPostsByUserId(userId: String) {
+    fun refreshPostsByUserId() {
         loadingState.postValue(LoadingState.LOADING)
-        firebaseModel.getPostsByUserId(userId) { posts ->
+        firebaseModel.getPostsByUserId() { posts ->
             executor.execute {
                 for (post in posts) {
                     database.postDao().insertAll(post)
@@ -156,7 +143,4 @@ class Model private constructor() {
         }
     }
 
-//    fun postsByUser(userId: String) {
-//        postsByUserIdMutable.value=listOf(firebaseModel.getPostsByUserId(userId))
-//    }
 }
