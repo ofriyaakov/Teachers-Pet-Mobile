@@ -51,6 +51,7 @@ class EditPostFragment : Fragment() {
 
         val postButton: Button = view.findViewById(R.id.postButton)
         val cancelButton: Button = view.findViewById(R.id.cancelButton)
+        val deleteButton: Button = view.findViewById(R.id.deleteButton)
         val uploadImageButton: Button = view.findViewById(R.id.uploadImageButton)
 
         uploadImageButton.setOnClickListener {
@@ -59,6 +60,11 @@ class EditPostFragment : Fragment() {
         postButton.setOnClickListener {
             onPostClicked()
         }
+
+        deleteButton.setOnClickListener {
+//            onDeleteClicked()
+        }
+
         cancelButton.setOnClickListener {
             findNavController().navigate(R.id.action_editPostFragment_to_myPostsPageFragment)
         }

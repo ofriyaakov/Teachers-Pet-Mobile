@@ -70,6 +70,17 @@ class FirebaseModel {
         }
     }
 
+    fun deletePost(post: Post, callback: EmptyCallback) {
+        database.collection(Constants.Collections.POSTS).document(post.id).delete()
+            .addOnCompleteListener {
+                Log.d("DELETE", "POST DELETED")
+                callback()
+            }
+            .addOnFailureListener {
+                Log.d("TAG", it.toString() + it.message)
+            }
+    }
+
     fun uploadImage(image: Bitmap, name: String, callback: (String?) -> Unit) {
         val storageRef = storage.reference
         val imageRef = storageRef.child("images/$name.jpg")
